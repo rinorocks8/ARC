@@ -279,10 +279,9 @@
   var today = new Date();
   var year = today.getFullYear();
   var month = today.getMonth();
-  var day = 0;
+  var day = today.getDate();
   if((today.getHours() >= 9 && today.getMinutes() >= 30) || today.getHours() >= 10){ //if its after 9:30
     month = today.getMonth()+1;
-    day = today.getDate();
   } else { //its before 9:30
     if(today.getDate() === 1){
       if (today.getMonth() === 3 || today.getMonth() === 5 || today.getMonth() === 7 || today.getMonth() === 8 || today.getMonth() === 10 || today.getMonth() === 12 ){
