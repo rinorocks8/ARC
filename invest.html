@@ -282,7 +282,7 @@
   if((today.getHours() >= 9 && today.getMinutes() >= 30) || today.getHours() >= 10){ //if its after 9:30
     month = today.getMonth()+1;
     day = today.getDate();
-  } else { //its before
+  } else { //its before 9:30
     if(today.getDate() === 1){
       if (today.getMonth() === 4 || today.getMonth() === 6 || today.getMonth() === 7 || today.getMonth() === 9 || today.getMonth() === 11 ){
         month = today.getMonth();
