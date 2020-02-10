@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <div class="main">
+    <div class= "menu">
+        <li><a href="about.html">
+            <canvas id="logo" width="160" height="60">
+                Your browser does not support the HTML5 canvas tag.</canvas>
+        </a></li>
+        <br>
+        <li><a href="">Banking</a></li>
+        <li><a href="invest.html">Investments</a></li>
+        <li><b>
+          <input type="file" id="fileUpload" onchange="Upload()">
+        </b></li>
+    </div>
+    <div class="body">
+      <div class="split-top">
+        <div class="column-left">
+          <div class="box"></div>
+        </div>
+        <div class="column-center">
+          <div class="box"></div>
+        </div>
+        <div class="column-right">
+          <div class="box">
+            <div class="table">
+              <div id="dvpurchases"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split-bottom">
+        <div class="column-left">
+          <div class="box"></div>
+        </div>
+        <div class="column-center">
+          <div class="box"></div>
+        </div>
+        <div class="column-right">
+          <div class="box">
+            <div class="table">
+              <div id="dvdeposit"></div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
+
+<script type="text/javascript">
+
+/*  function Upload() {
+        var fileUpload = document.getElementById("fileUpload");
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+        if (regex.test(fileUpload.value.toLowerCase())) {
+            if (typeof (FileReader) != "undefined") {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var table = document.createElement("table");
+                    var rows = e.target.result.split("\n");
+                    //adds each row
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].split(",");
+                        if (cells.length > 1) {
+                            var row = table.insertRow(-1);
+                            //adds each column
+
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = Number(cells[1]).toFixed(2);
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = cells[4];
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = cells[0];
+                        }
+                    }
+                    var dvCSV = document.getElementById("dvCSV");
+                    dvCSV.innerHTML = "";
+                    dvCSV.appendChild(table);
+                }
+                reader.readAsText(fileUpload.files[0]);
+            } else {
+                alert("This browser does not support HTML5.");
+            }
+        } else {
+            alert("Please upload a valid CSV file.");
+        }
+    }
+*/
+
+  function Upload() {
+    var fileUpload = document.getElementById("fileUpload");
+    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+    if (regex.test(fileUpload.value.toLowerCase())) {
+      if (typeof (FileReader) != "undefined") {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          //define tables
+          var tpurchases = document.createElement("table");
+          var tdeposit = document.createElement("table");
+          //pareses csv into rows and cells
+          var rows = e.target.result.split("\n");
+          for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].split(",");
+            if (cells.length > 1) {
+              //sort data
+              if (cells[4].substring(0,8) == "PURCHASE"){
+                var row = tpurchases.insertRow(-1);
+                var end = 50;
+                if (cells[4].includes("#"))
+                {
+                  var end = cells[4].indexOf("#") - 1;
+                }
+                //money
+                var cell = row.insertCell(-1);
+                cell.innerHTML = -1*Number(cells[1]).toFixed(2);
+                //company
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[4].substring(29, end);
+                //date
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[0];
+              }
+              //sort data
+              if (cells[4].substring(0, 14) == "MOBILE DEPOSIT"){
+                var row = tdeposit.insertRow(-1);
+                //money
+                var cell = row.insertCell(-1);
+                cell.innerHTML = "+"+Number(cells[1]).toFixed(2);
+
+                //type
+                var cell = row.insertCell(-1);
+                cell.innerHTML = "Deposit";
+                //sender or check#
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[4].substring(29);
+
+                //date
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[0];
+              }
+
+              if (cells[4].substring(0, 15) == "ONLINE TRANSFER"){
+                var row = tdeposit.insertRow(-1);
+                //money
+                var cell = row.insertCell(-1);
+                cell.innerHTML = "+" + Number(cells[1]).toFixed(2);
+
+                //type
+                var cell = row.insertCell(-1);
+                cell.innerHTML = "Online Transfer";
+                //sender or check#
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[4].substring(21, cells[4].indexOf('#') - 26);
+
+                //date
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[0];
+              }
+            }
+          }
+
+          //assigns tables to html
+          var dvpurchases = document.getElementById("dvpurchases");
+          dvpurchases.innerHTML = "";
+          dvpurchases.appendChild(tpurchases);
+          var dvdeposit = document.getElementById("dvdeposit");
+          dvdeposit.innerHTML = "";
+          dvdeposit.appendChild(tdeposit);
+        }
+        reader.readAsText(fileUpload.files[0]);
+      } else {
+        alert("This browser does not support HTML5.");
+      }
+    } else {
+      alert("Please upload a valid CSV file.");
+    }
+  }
+</script>
+
+<script>
+  var c = document.getElementById("logo");
+  var ctx = c.getContext("2d");
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 8;
+  ctx.lineCap = "square";
+  //A
+  ctx.moveTo(-4,80);
+  ctx.lineTo(30,0);
+  ctx.stroke();
+  ctx.moveTo(28,0);
+  ctx.lineTo(61,80);
+  ctx.stroke();
+
+  //R
+  ctx.moveTo(62,0);
+  ctx.lineTo(62,80);
+  ctx.stroke();
+  ctx.moveTo(73,4);
+  ctx.lineTo(78,4);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(81, 22, 18, -.5 * Math.PI, 0.3 * Math.PI);
+  ctx.stroke();
+  ctx.moveTo(90,38);
+  ctx.lineTo(108,80);
+  ctx.stroke();
+
+  //C
+  ctx.beginPath();
+  ctx.arc(135, 30, 26, 0, 2 * Math.PI);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.strokeStyle = "#f1f1f1";
+  ctx.lineWidth = 35;
+  ctx.moveTo(150,30);
+  ctx.lineTo(160,30);
+  ctx.stroke();
+
+  //A fix
+  ctx.beginPath();
+  ctx.strokeStyle = "#f1f1f1";
+  ctx.lineWidth = 8;
+  ctx.moveTo(-15,80);
+  ctx.lineTo(21,0);
+  ctx.stroke();
+
+  ctx.moveTo(37,0);
+  ctx.lineTo(46,20);
+  ctx.stroke();
+</script> 
