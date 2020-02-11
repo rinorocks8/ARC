@@ -21,7 +21,6 @@
   left: 200px;
   right: 0px;
   height: 100%;
-  border: 2px solid red;
 }
 
 .split-top {
@@ -36,13 +35,11 @@
   width: 33%;
   height: 50%;
   left: 0;
-  border: 2px solid blue;
   position: absolute;
   background-color: white;
 }
 .column-center {
   width: 33.333%;
-  border: 2px solid blue;
   margin-left: 33%;
   position: absolute;
   height: 50%;
@@ -52,7 +49,6 @@
   width: 33.333%;
   right: 0;
   position: absolute;
-  border: 2px solid blue;
   height: 50%;
   background-color: white;
 }
