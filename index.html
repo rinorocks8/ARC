@@ -15,7 +15,6 @@
         <li><a href="invest.html">Investments</a></li>
         <li><b>
           <button onclick="Upload()">Click me</button>
-          <script type="text/javascript">Upload();</script>
         </b></li>
     </div>
     <div class="body">
@@ -215,6 +214,8 @@
     dvdeposit.innerHTML = "";
     dvdeposit.appendChild(tdeposit);
     }
+  
+    window.onload = Upload()
 </script>
 
 <script>
