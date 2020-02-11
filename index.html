@@ -13,7 +13,8 @@
         <li><a href="">Banking</a></li>
         <li><a href="invest.html">Investments</a></li>
         <li><b>
-          <input type="file" id="fileUpload" onchange="Upload()">
+          
+          <script type="file" id="fileUpload" src="Checking1.csv"></script>
         </b></li>
     </div>
     <div class="body">
@@ -93,6 +94,8 @@
 */
 
   function Upload() {
+    //<input type="file" id="fileUpload" onchange="Upload()">
+    
     var fileUpload = document.getElementById("fileUpload");
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     if (regex.test(fileUpload.value.toLowerCase())) {
