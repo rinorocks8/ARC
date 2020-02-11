@@ -58,12 +58,17 @@
     //<input type="file" id="fileUpload" onchange="Upload()">
     //<script type="file" id="fileUpload" src="https://raw.githubusercontent.com/rinorocks8/Arc/master/Checking1.csv">
     
-    //var fileUpload = document.getElementById("fileUpload");
-    var fileUpload = "https://raw.githubusercontent.com/rinorocks8/Arc/master/Checking1.csv";
-    
+    /*var fileUpload = document.getElementById("fileUpload");
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     if (regex.test(fileUpload.value.toLowerCase())) {
       if (typeof (FileReader) != "undefined") {
+        var reader = new FileReader();
+    */
+    
+    var fileUpload = "https://raw.githubusercontent.com/rinorocks8/Arc/master/Checking1.csv";
+    
+    if (true) {
+      if (true) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
