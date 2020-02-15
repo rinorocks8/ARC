@@ -62,9 +62,11 @@
 
 .title {
   height: 40px;
+  position: absolute;
 }
 
 .container {
+  position: absolute;
   top: 40px;
   bottom: 0px;
   height: 100%;
