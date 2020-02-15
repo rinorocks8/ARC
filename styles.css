@@ -61,6 +61,7 @@
 }
 
 .title {
+  background-color: lightgrey;
   height:40px;
   line-height: 40px;
   font-family: "Arial Black", Gadget, sans-serif;
