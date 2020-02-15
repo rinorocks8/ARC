@@ -61,14 +61,10 @@
 }
 
 .title {
-  position: static;
-  top: 0;
   height: 40px;
 }
 
 .content {
-  position: static;
-  top: 0;
   margin-top: 40px;
 }
 
