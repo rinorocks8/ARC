@@ -61,18 +61,15 @@
 }
 
 .title {
-  position: absolute;
+  position: static;
   top: 0;
   height: 40px;
 }
 
 .content {
-  position: absolute;
+  position: static;
   top: 0;
   margin-top: 40px;
-  height: 100%;
-  left: 0;
-  width: 100%;
 }
 
 .table {
