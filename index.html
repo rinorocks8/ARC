@@ -165,6 +165,8 @@
     }
     //define tables
     var tpurchases = document.createElement("table");
+    var tpurchasessum = document.createElement("table");
+    var apurchasessum = 0;
     var tdeposit = document.createElement("table");
     var tdepositsum = document.createElement("table");
     var adepositsum = 0;
@@ -184,6 +186,7 @@
           //money
           var cell = row.insertCell(-1);
           cell.innerHTML = -1*Number(cells[1]).toFixed(2);
+          adepositsum += Number(cells[1]).toFixed(2)
           //company
           var cell = row.insertCell(-1);
           cell.innerHTML = cells[4].substring(29, end);
@@ -226,12 +229,16 @@
           cell.innerHTML = cells[0];
         }
         var row = tdepositsum.insertRow(-1);
-        //money
         var cell = row.insertCell(-1);
         cell.innerHTML = "Total:";
-
         var cell = row.insertCell(-1);
         cell.innerHTML = "+" + parseFloat(adepositsum);
+
+        var row = tpurchasessum.insertRow(-1);
+        var cell = row.insertCell(-1);
+        cell.innerHTML = "Total:";
+        var cell = row.insertCell(-1);
+        cell.innerHTML = "+" + parseFloat(apurchasessum);
       }
     }
     //assigns tables to html
