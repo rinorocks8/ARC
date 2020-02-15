@@ -34,6 +34,9 @@
               <div class="table">
                   <div id="dvpurchases"></div>
               </div>
+              <div class="tablesum">
+                <div id="dvpurchasesum"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -254,9 +257,9 @@
     dvdepositsum.appendChild(tdepositsum);
     }
 
-    var dvdepositsum = document.getElementById("dvdepositsum");
-    dvdepositsum.innerHTML = "";
-    dvdepositsum.appendChild(tdepositsum);
+    var dvpurchasesum = document.getElementById("dvpurchasesum");
+    dvpurchasesum.innerHTML = "";
+    dvpurchasesum.appendChild(tpurchasessum);
     }
 
     window.onload = Upload()
