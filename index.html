@@ -189,7 +189,7 @@
           //money
           var cell = row.insertCell(-1);
           cell.innerHTML = -1*Number(cells[1]).toFixed(2);
-          apurchasessum += -1*Number(cells[1]).toFixed(2);
+          apurchasessum += -1*Number(cells[1]);
           //company
           var cell = row.insertCell(-1);
           cell.innerHTML = cells[4].substring(29, end);
@@ -203,7 +203,7 @@
           //money
           var cell = row.insertCell(-1);
           cell.innerHTML = "+"+Number(cells[1]).toFixed(2);
-          adepositsum += Number(cells[1]).toFixed(2);
+          adepositsum += Number(cells[1]);
           //type
           var cell = row.insertCell(-1);
           cell.innerHTML = "Deposit";
@@ -219,7 +219,7 @@
           //money
           var cell = row.insertCell(-1);
           cell.innerHTML = "+" + Number(cells[1]).toFixed(2);
-          adepositsum += Number(cells[1]).toFixed(2);
+          adepositsum += Number(cells[1]);
           //type
           var cell = row.insertCell(-1);
           cell.innerHTML = "Online Transfer";
@@ -236,13 +236,13 @@
     var cell = row.insertCell(-1);
     cell.innerHTML = "Total:";
     var cell = row.insertCell(-1);
-    cell.innerHTML = "+" + parseFloat(adepositsum);
+    cell.innerHTML = "+" + parseFloat(adepositsum).toFixed(2)
 
     var row = tpurchasessum.insertRow(-1);
     var cell = row.insertCell(-1);
     cell.innerHTML = "Total:";
     var cell = row.insertCell(-1);
-    cell.innerHTML = "-" + parseFloat(apurchasessum);
+    cell.innerHTML = "-" + parseFloat(apurchasessum).toFixed(2);
 
     //assigns tables to html
     var dvpurchases = document.getElementById("dvpurchases");
