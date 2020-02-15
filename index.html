@@ -231,19 +231,20 @@
           var cell = row.insertCell(-1);
           cell.innerHTML = cells[0];
         }
-        var row = tdepositsum.insertRow(-1);
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "Total:";
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "+" + parseFloat(adepositsum);
-
-        var row = tpurchasessum.insertRow(-1);
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "Total:";
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "-" + parseFloat(apurchasessum);
       }
     }
+    var row = tdepositsum.insertRow(-1);
+    var cell = row.insertCell(-1);
+    cell.innerHTML = "Total:";
+    var cell = row.insertCell(-1);
+    cell.innerHTML = "+" + parseFloat(adepositsum);
+
+    var row = tpurchasessum.insertRow(-1);
+    var cell = row.insertCell(-1);
+    cell.innerHTML = "Total:";
+    var cell = row.insertCell(-1);
+    cell.innerHTML = "-" + parseFloat(apurchasessum);
+
     //assigns tables to html
     var dvpurchases = document.getElementById("dvpurchases");
     dvpurchases.innerHTML = "";
