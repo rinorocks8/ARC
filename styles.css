@@ -64,12 +64,7 @@
   height: 40px;
 }
 
-.content {
-  
-}
-
 .table {
-  position: inherit;
   overflow-y: scroll;
   max-height: 100%;
 }
