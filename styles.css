@@ -38,7 +38,6 @@
   left: 0;
   position: absolute;
   background-color: white;
-  border-color: red;
 }
 .column-center {
   width: 33.333%;
@@ -46,7 +45,6 @@
   position: absolute;
   height: 50%;
   background-color: white;
-  border-color: red;
 }
 .column-right {
   width: 33.333%;
@@ -54,7 +52,6 @@
   position: absolute;
   height: 50%;
   background-color: white;
-  border-color: red;
 }
 
 .box {
@@ -62,6 +59,7 @@
   height: 75%;
   width: 80%;
   box-shadow: 0px 0px 5px 5px lightgrey;
+  border-color: red;
 }
 
 .title {
