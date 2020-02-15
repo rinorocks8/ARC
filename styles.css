@@ -65,6 +65,7 @@
 }
 
 .content {
+  position: absolute;
   top: 0;
   height: calc(100%-40px);
 }
