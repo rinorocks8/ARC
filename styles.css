@@ -65,6 +65,9 @@
 }
 
 .content {
+  display: block;
+  position:absolute;
+  height:auto;
 }
 
 .table {
