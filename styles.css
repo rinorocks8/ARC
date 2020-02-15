@@ -26,12 +26,10 @@
 
 .split-top {
   height: 50%;
-  border-color: red;
 }
 
 .split-bottom {
   height: 50%;
-  border-color: red;
 }
 
 .column-left {
@@ -40,6 +38,7 @@
   left: 0;
   position: absolute;
   background-color: white;
+  border-color: red;
 }
 .column-center {
   width: 33.333%;
@@ -47,6 +46,7 @@
   position: absolute;
   height: 50%;
   background-color: white;
+  border-color: red;
 }
 .column-right {
   width: 33.333%;
@@ -54,6 +54,7 @@
   position: absolute;
   height: 50%;
   background-color: white;
+  border-color: red;
 }
 
 .box {
