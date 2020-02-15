@@ -26,10 +26,12 @@
 
 .split-top {
   height: 50%;
+  border-color: red;
 }
 
 .split-bottom {
   height: 50%;
+  border-color: red;
 }
 
 .column-left {
