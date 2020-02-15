@@ -65,7 +65,7 @@
 }
 
 .content {
-
+  height: calc(100%-40px);
 }
 
 .table {
