@@ -167,60 +167,71 @@
     var tpurchases = document.createElement("table");
     var tdeposit = document.createElement("table");
     var tdepositsum = document.createElement("table");
+    var adepositsum = 0;
     //pareses csv into rows and cells
     var rows = fileUpload.split("^");
     for (var i = 0; i < rows.length; i++) {
       var cells = rows[i].split(",");
       if (cells.length > 1) {
       //sort data
-      if (cells[4].substring(0,8) == "PURCHASE"){
-        var row = tpurchases.insertRow(-1);
-        var end = 50;
-        if (cells[4].includes("#"))
-        {
-        var end = cells[4].indexOf("#") - 1;
+        if (cells[4].substring(0,8) == "PURCHASE"){
+          var row = tpurchases.insertRow(-1);
+          var end = 50;
+          if (cells[4].includes("#"))
+          {
+          var end = cells[4].indexOf("#") - 1;
+          }
+          //money
+          var cell = row.insertCell(-1);
+          cell.innerHTML = -1*Number(cells[1]).toFixed(2);
+          //company
+          var cell = row.insertCell(-1);
+          cell.innerHTML = cells[4].substring(29, end);
+          //date
+          var cell = row.insertCell(-1);
+          cell.innerHTML = cells[0];
         }
+        //sort data
+        if (cells[4].substring(0, 14) == "MOBILE DEPOSIT"){
+          var row = tdeposit.insertRow(-1);
+          //money
+          var cell = row.insertCell(-1);
+          cell.innerHTML = "+"+Number(cells[1]).toFixed(2);
+          adepositsum += Number(cells[1]).toFixed(2)
+           //type
+          var cell = row.insertCell(-1);
+          cell.innerHTML = "Deposit";
+          //sender or check#
+          var cell = row.insertCell(-1);
+          cell.innerHTML = cells[4].substring(29);
+           //date
+          var cell = row.insertCell(-1);
+          cell.innerHTML = cells[0];
+        }
+         if (cells[4].substring(0, 15) == "ONLINE TRANSFER"){
+          var row = tdeposit.insertRow(-1);
+          //money
+          var cell = row.insertCell(-1);
+          cell.innerHTML = "+" + Number(cells[1]).toFixed(2);
+          adepositsum += Number(cells[1]).toFixed(2)
+
+           //type
+          var cell = row.insertCell(-1);
+          cell.innerHTML = "Online Transfer";
+          //sender or check#
+          var cell = row.insertCell(-1);
+          cell.innerHTML = cells[4].substring(21, cells[4].indexOf('#') - 26);
+           //date
+          var cell = row.insertCell(-1);
+          cell.innerHTML = cells[0];
+        }
+        var row = tdeposit.dvdepositsum(-1);
         //money
         var cell = row.insertCell(-1);
-        cell.innerHTML = -1*Number(cells[1]).toFixed(2);
-        //company
+        cell.innerHTML = "Total";
+
         var cell = row.insertCell(-1);
-        cell.innerHTML = cells[4].substring(29, end);
-        //date
-        var cell = row.insertCell(-1);
-        cell.innerHTML = cells[0];
-      }
-      //sort data
-      if (cells[4].substring(0, 14) == "MOBILE DEPOSIT"){
-        var row = tdeposit.insertRow(-1);
-        //money
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "+"+Number(cells[1]).toFixed(2);
-         //type
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "Deposit";
-        //sender or check#
-        var cell = row.insertCell(-1);
-        cell.innerHTML = cells[4].substring(29);
-         //date
-        var cell = row.insertCell(-1);
-        cell.innerHTML = cells[0];
-      }
-       if (cells[4].substring(0, 15) == "ONLINE TRANSFER"){
-        var row = tdeposit.insertRow(-1);
-        //money
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "+" + Number(cells[1]).toFixed(2);
-         //type
-        var cell = row.insertCell(-1);
-        cell.innerHTML = "Online Transfer";
-        //sender or check#
-        var cell = row.insertCell(-1);
-        cell.innerHTML = cells[4].substring(21, cells[4].indexOf('#') - 26);
-         //date
-        var cell = row.insertCell(-1);
-        cell.innerHTML = cells[0];
-      }
+        cell.innerHTML = "+" + adepositsum;
       }
     }
     //assigns tables to html
