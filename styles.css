@@ -65,7 +65,8 @@
 }
 
 .content {
-  height: 100%-80px;
+  margin-top: 80px;
+  height: 100%;
 }
 
 .table {
