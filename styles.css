@@ -65,12 +65,13 @@
 }
 
 .content {
-
+  
 }
 
 .table {
-    overflow-y: scroll;
-    max-height: 100%;
+  position: inherit;
+  overflow-y: scroll;
+  max-height: 100%;
 }
 
 .tablesum{
