@@ -189,7 +189,7 @@
           //money
           var cell = row.insertCell(-1);
           cell.innerHTML = -1*Number(cells[1]).toFixed(2);
-          apurchasessum += Number(cells[1]).toFixed(2);
+          apurchasessum += -1*Number(cells[1]).toFixed(2);
           //company
           var cell = row.insertCell(-1);
           cell.innerHTML = cells[4].substring(29, end);
@@ -204,13 +204,13 @@
           var cell = row.insertCell(-1);
           cell.innerHTML = "+"+Number(cells[1]).toFixed(2);
           adepositsum += Number(cells[1]).toFixed(2);
-           //type
+          //type
           var cell = row.insertCell(-1);
           cell.innerHTML = "Deposit";
           //sender or check#
           var cell = row.insertCell(-1);
           cell.innerHTML = cells[4].substring(29);
-           //date
+          //date
           var cell = row.insertCell(-1);
           cell.innerHTML = cells[0];
         }
@@ -220,8 +220,7 @@
           var cell = row.insertCell(-1);
           cell.innerHTML = "+" + Number(cells[1]).toFixed(2);
           adepositsum += Number(cells[1]).toFixed(2);
-
-           //type
+          //type
           var cell = row.insertCell(-1);
           cell.innerHTML = "Online Transfer";
           //sender or check#
