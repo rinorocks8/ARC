@@ -61,7 +61,8 @@
 }
 
 .title {
-  height: 80px;
+  float: top;
+  height: 100%;
 }
 
 .content {
