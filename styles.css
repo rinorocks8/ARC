@@ -61,11 +61,12 @@
 }
 
 .title {
-  height: 80px;
+  position: 0;
+  height: 40px;
 }
 
 .content {
-  float: top;
+  position: 0;
   height: 100%;
 }
 
