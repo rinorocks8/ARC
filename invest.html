@@ -287,21 +287,17 @@
       if (today.getMonth() === 1 || today.getMonth() === 3 || today.getMonth() === 5 || today.getMonth() === 7 || today.getMonth() === 8 || today.getMonth() === 10 || today.getMonth() === 0 ){
         month = today.getMonth();
         day = 31;
-        alert("1");
       } else if (today.getMonth() === 2) {
         if (ily_modulo(today.getFullYear())===true){
           month = today.getMonth();
           day = 29;
-          alert("2");
         } else {
           month = today.getMonth();
           day = 28;
-          alert("3");
         }
       } else {
         month = today.getMonth();
         day = 30;
-        alert("4");
       }
     }
   }
