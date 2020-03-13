@@ -15,6 +15,14 @@
   position: fixed; /* Make it stick, even on scroll */
 }
 
+.menufont {
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-decoration: none;
+  background-color: #f44336;
+  padding: 14px 25px;
+  text-align: center;
+}
+
 .body {
   position:fixed;
   top: 0;
