@@ -15,13 +15,17 @@
   position: fixed; /* Make it stick, even on scroll */
 }
 
-.a {
+a:link, a:visited {
   font-family: "Arial Black", Gadget, sans-serif;
   text-decoration: none;
   background-color: #F5F5F5;
   padding: 14px 25px;
   text-align: center;
   display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
 }
 
 .body {
