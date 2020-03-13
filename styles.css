@@ -9,7 +9,7 @@
   list-style-type: none;
   margin: 0;
   padding: 20px;
-  width: 160px;
+  width: 200px;
   background-color: #f1f1f1;
   height: 100%; /* Full height */
   position: fixed; /* Make it stick, even on scroll */
@@ -18,7 +18,7 @@
 a:link, a:visited {
   background-color: #F1F1F1;
   color: Black;
-  padding: 14px 20px;
+  padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -32,7 +32,7 @@ a:hover, a:active {
 .body {
   position:fixed;
   top: 0;
-  left: 200px;
+  left: 240px;
   right: 0px;
   height: 100%;
 }
