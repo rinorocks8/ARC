@@ -136,7 +136,7 @@ a:hover, a:active {
 }
 
 .column-left {
-  width: calc(33.33333% - 60px);
+  width: calc(33.3333333% - 60px);
   height: calc(50% - 60px);
   padding: 0px 20px 0px 40px;
   left: 0;
@@ -144,15 +144,15 @@ a:hover, a:active {
   background-color: white;
 }
 .column-center {
-  width: calc(33.33333% - 40px);
-  margin-left: 33.33333%;
+  width: calc(33.3333333% - 40px);
+  margin-left: 33.3333333%;
   padding: 0px 20px 0px 20px;
   position: absolute;
   height: calc(50% - 60px);
   background-color: white;
 }
 .column-right {
-  width: calc(33.33333% - 60px);
+  width: calc(33.3333333% - 60px);
   padding: 0px 40px 0px 20px;
   right: 0;
   position: absolute;
