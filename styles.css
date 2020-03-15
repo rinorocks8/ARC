@@ -7,7 +7,7 @@
 
 .w3-modal {
   z-index:3;
-  display:none;
+  display:block;
   padding-top:100px;
   position:fixed;
   left:0;
@@ -28,12 +28,12 @@
   width:600px;
 }
 
-.w3-animate-top{
+.w3-animate-top {
   position:relative;
   animation:animatetop 0.4s;
 }
 
-@keyframes animatetop{
+@keyframes animatetop {
   from{
     top:-300px;
     opacity:0;
@@ -43,6 +43,22 @@
     opacity:1;
   }
 }
+
+.w3-card-4,.w3-hover-shadow:hover {
+  box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+}
+
+.w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
+.w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after{content:"";display:table;clear:both}
+
+.w3-container,.w3-panel{padding:0.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px}
+
+.w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#009688!important}
+
+.w3-button:hover{color:#000!important;background-color:#ccc!important}
+.w3-button{width:100%}}
+.w3-button{white-space:normal}
+.w3-button{width:100%;text-align:left;padding:8px 16px}
 
 .menu {
   list-style-type: none;
