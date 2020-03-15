@@ -183,7 +183,6 @@ a:hover, a:active {
 
 .container {
   height: calc(100% - 60px);
-  padding: 20px;
 }
 
 .table {
