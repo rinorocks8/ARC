@@ -153,6 +153,7 @@ a:hover, a:active {
 }
 .column-right {
   width: calc(33% - 60px);
+  padding: 0px 20px 0px 20px;
   right: 0;
   position: absolute;
   height: calc(50% - 60px);
