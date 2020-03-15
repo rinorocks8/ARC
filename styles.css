@@ -7,7 +7,7 @@
 
 .w3-modal {
   z-index:3;
-  display:block;
+  display:none;
   padding-top:100px;
   position:fixed;
   left:0;
