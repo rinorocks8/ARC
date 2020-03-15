@@ -32,6 +32,7 @@
   position:relative;
   animation:animatetop 0.4s;
 }
+
 @keyframes animatetop{
   from{
     top:-300px;
