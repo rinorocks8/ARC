@@ -126,39 +126,42 @@ a:hover, a:active {
 }
 
 .split-top {
-  height: 50%;
+  height: calc(50% - 60px);
+  padding: 40px 0px 20px 0px;
 }
 
 .split-bottom {
-  height: 50%;
+  height: calc(50% - 60px);
+  padding: 20px 0px 40px 0px;
 }
 
 .column-left {
-  width: 33%;
-  height: 50%;
+  width: calc(33% - 60px);
+  height: calc(50% - 60px);
+  padding: 0px 20px 0px 40px;
   left: 0;
   position: absolute;
   background-color: white;
 }
 .column-center {
-  width: 33.333%;
+  width: calc(33% - 60px);
   margin-left: 33%;
+  padding: 0px 20px 0px 20px;
   position: absolute;
-  height: 50%;
+  height: calc(50% - 60px);
   background-color: white;
 }
 .column-right {
-  width: 33.333%;
+  width: calc(33% - 60px);
   right: 0;
   position: absolute;
-  height: 50%;
+  height: calc(50% - 60px);
   background-color: white;
 }
 
 .box {
-  transform: translate(12.5%, 16.25%);
-  height: 75%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   box-shadow: 0px 0px 3px 3px #E8E8E8;
 }
 
