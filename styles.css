@@ -166,6 +166,10 @@ a:hover, a:active {
   box-shadow: 0px 0px 3px 3px #E8E8E8;
 }
 
+.invest {
+  padding: 60px 60px 60px 60px;
+}
+
 .title {
   background-color: #F5F5F5;
   height:40px;
