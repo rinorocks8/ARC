@@ -136,7 +136,7 @@ a:hover, a:active {
 }
 
 .column-left {
-  width: calc(33% - 60px);
+  width: calc(33.33% - 60px);
   height: calc(50% - 60px);
   padding: 0px 20px 0px 40px;
   left: 0;
@@ -144,7 +144,7 @@ a:hover, a:active {
   background-color: white;
 }
 .column-center {
-  width: calc(33% - 40px);
+  width: calc(33.33% - 40px);
   margin-left: 33%;
   padding: 0px 20px 0px 20px;
   position: absolute;
@@ -152,7 +152,7 @@ a:hover, a:active {
   background-color: white;
 }
 .column-right {
-  width: calc(33% - 60px);
+  width: calc(33.33% - 60px);
   padding: 0px 40px 0px 20px;
   right: 0;
   position: absolute;
