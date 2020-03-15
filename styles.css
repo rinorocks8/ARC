@@ -168,6 +168,8 @@ a:hover, a:active {
 
 .invest {
   padding: 60px 60px 60px 60px;
+  height: calc(100% - 120px);
+  width: calc(100% - 120px);
 }
 
 .title {
