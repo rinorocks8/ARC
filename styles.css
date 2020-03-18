@@ -188,6 +188,7 @@ a:hover, a:active {
   height: calc(100% - 120px);
   width: calc(100% - 120px);
   display: grid;
+  margin: 20px 20px 20px 20px;
 }
 
 .title {
