@@ -128,9 +128,8 @@
 
     // Output the result
     $EXPORT.text(JSON.stringify(data));
-    download(data, 'ARC-Banking.txt', 'text/plain');
+    download(JSON.stringify(data), 'ARC-Banking.txt', 'text/plain');
   });
-
 
   function download(text, name, type) {
     var a = document.getElementById("export-btn");
