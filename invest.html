@@ -134,7 +134,7 @@
 
   function download(text, name, type) {
     var a = document.getElementById("export-btn");
-    var file = new Blob([text], {type: type});
+    var file = new Blob([text], {type: 'text/plain'});
     a.href = URL.createObjectURL(file);
     a.download = name;
   }
