@@ -128,8 +128,7 @@
 
     // Output the result
     $EXPORT.text(JSON.stringify(data));
-    window.open(new Blob([JSON.stringify(data)], {type: 'text/plain'}))
-    //download(JSON.stringify(data), 'ARCBanking.txt', 'text/plain');
+    download(JSON.stringify(data), 'ARCBanking.txt', 'text/plain');
   });
 
   function download(text, name, type) {
@@ -137,6 +136,7 @@
     var file = new Blob([text], {type: type});
     a.href = URL.createObjectURL(file);
     a.download = name;
+    window.open(a);
   }
 </script>
 
