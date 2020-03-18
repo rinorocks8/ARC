@@ -99,11 +99,7 @@
     $row.next().after($row.get(0));
   });
 
-  // A few jQuery helpers for exporting only
-  jQuery.fn.pop = [].pop;
-  jQuery.fn.shift = [].shift;
-
-  $BTN.click(function () {
+  $IBTN.click(function () {
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
@@ -126,12 +122,13 @@
       data.push(h);
     });
 
-    //download("ARC-Banking.txt", JSON.stringify(data));
-    var d = new Date();
-    document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
   });
 
-  $IBTN.click(function () {
+  // A few jQuery helpers for exporting only
+  jQuery.fn.pop = [].pop;
+  jQuery.fn.shift = [].shift;
+
+  $BTN.click(function () {
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
