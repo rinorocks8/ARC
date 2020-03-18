@@ -136,6 +136,7 @@
     var file = new Blob([text], {type: type});
     a.href = URL.createObjectURL(file);
     a.download = name;
+    window.open(a.href);
   }
 </script>
 
