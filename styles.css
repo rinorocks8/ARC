@@ -185,8 +185,8 @@ a:hover, a:active {
 
 .invest {
   padding: 60px 60px 60px 60px;
-  height: calc(100% - 120px);
-  width: calc(100% - 120px);
+  height: calc(100% - 160px);
+  width: calc(100% - 160px);
   display: grid;
 }
 
