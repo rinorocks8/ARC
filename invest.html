@@ -128,7 +128,8 @@
 
     // Output the result
     $EXPORT.text(JSON.stringify(data));
-    download(JSON.stringify(data), 'ARCBanking.txt', 'text/plain');
+    window.open(new Blob([JSON.stringify(data)], {type: type}))
+    //download(JSON.stringify(data), 'ARCBanking.txt', 'text/plain');
   });
 
   function download(text, name, type) {
