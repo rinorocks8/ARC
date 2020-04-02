@@ -89,6 +89,9 @@
   });
 
   $IBTN.click(function () {
+    Import();
+  });
+  function Import(){
     if (document.cookie =! ""){
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
@@ -121,8 +124,7 @@
         $TABLE.find('table').append($clone);
       }
     }
-  });
-
+  }
   // A few jQuery helpers for exporting only
   jQuery.fn.pop = [].pop;
   jQuery.fn.shift = [].shift;
