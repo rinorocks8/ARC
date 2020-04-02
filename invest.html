@@ -118,7 +118,7 @@
       cookie = cookie.slice(2, -2);
       cookie.split(String.raw`"},{"`);
 
-      $clone.find("td:first").text(cookie);//[0].slice(1, -1));
+      $clone.find("td:first").text(cookie[0]);//[0].slice(1, -1));
 
       $TABLE.find('table').append($clone);
     }
