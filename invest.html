@@ -58,6 +58,7 @@
             <button id="export-btn" class="btn btn-primary">Export Data</button>
             <input type="file" id="fileElem" onchange="Upload();" style="display:none">
             <button id="import-btn" class="btn btn-primary">Import Data</button>
+            <p id="insert"></p>
         </div>
       </div>
     </div>
@@ -106,7 +107,7 @@
         var reader = new FileReader();
         reader.onload = function (e) {
           var d = new Date();
-          console.log(e.target.result);
+          document.getElementById("insert").innerHTML = e.target.result;
           document.cookie = "banking=" + e.target.result + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
         }
       }
