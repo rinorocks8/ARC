@@ -88,9 +88,7 @@
     $row.next().after($row.get(0));
   });
 
-  $IBTN.click(function () {
-    Import();
-  });
+  $IBTN.click(Import(););
   function Import(){
     if (document.cookie =! ""){
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
