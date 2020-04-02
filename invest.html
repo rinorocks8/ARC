@@ -116,7 +116,7 @@
         }
       }
       cookie = cookie.slice(2, -2);
-      //cookie.split(String.raw`"},{"`);
+      cookie.split('},{');
 
       $clone.find("td:first").text(cookie);//[0].slice(1, -1));
 
