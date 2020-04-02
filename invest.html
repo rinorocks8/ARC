@@ -123,7 +123,7 @@
       //each column in each row - > "name":"Untitled"
       cookiedDataRaw = cookiedData[0].slice(1, -1).split('":"');
 
-      $clone.find("td:nth-child(1)").text(cookiedDataRaw[1]);
+      $clone.find("td:nth-child(2)").text(cookiedDataRaw[1]);
 
       $TABLE.find('table').append($clone);
     }
