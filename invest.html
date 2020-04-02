@@ -188,9 +188,11 @@
   });
 
   $TABLE.on("DOMSubtreeModified", function () {
-    var data = ExportData();
-    var d = new Date();
-    document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
+    if (ImportLoopFix == false) {
+      var data = ExportData();
+      var d = new Date();
+      document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
+    }
   });
 
   function download(filename, text) {
