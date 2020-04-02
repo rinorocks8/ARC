@@ -104,9 +104,8 @@
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
 
-      var ca = document.cookie.split(';');
 
-      $clone.find("td:first").text(ca[0]);
+      $clone.find("td:first").text("a");
 
       $TABLE.find('table').append($clone);
     }
