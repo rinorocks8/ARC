@@ -100,21 +100,13 @@
   }, false);
 
   function Upload() {
-    /*
-    var fileUpload = document.getElementById("fileElem");
-      if (typeof (FileReader) != "undefined") {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-
-          document.getElementById("insert").innerHTML = "here1";//e.target.result;
-          document.cookie = "banking=" + e.target.result + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
-        }
-      }*/
-    var input = event.target;
-
     var reader = new FileReader();
-    reader.readAsText(input.files[0]);
+    reader.onload = function(){
+      let value = e.value; 
+    };
+    fr.readAsText(document.getElementById('file').files[0]);
     document.getElementById("insert").innerHTML = reader.result;
+
     var d = new Date();
     document.cookie = "banking=" + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
     ImportData();
