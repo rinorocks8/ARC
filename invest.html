@@ -117,7 +117,8 @@
       }
       cookie.split(',');
       for(var i = 0; i < cookie.length; i++) {
-        cookie[i] = cookie[i].slice(1, -1);
+        var result = cookie[i].slice(1, -1);
+        cookie[i] = result;
       }
 
       $clone.find("td:first").text(cookie[0]);
