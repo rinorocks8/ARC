@@ -102,9 +102,10 @@
   function Upload() {
     var reader = new FileReader();
     reader.onload = function(){
-      let value = e.value; 
+      let value = e.value;
     };
-    reader.readAsText(document.getElementById('file').files[0]);
+
+    reader.readAsText(document.getElementById('fileElem').files[0]);
     document.getElementById("insert").innerHTML = reader.result;
 
     var d = new Date();
