@@ -117,9 +117,13 @@
       }
       cookie = cookie.slice(2, -2);
       cookied = cookie.split('},{');
-      cookiedData = cookied[0].split(',');
+      //cookied[i] is now every row saved -> "name":"Stir Fry","value":"undefined"
 
-      $clone.find("td:first").text(cookiedData[0].slice(8,-1));
+      cookiedData = cookied[0].split(',');
+      //each column in each row - > "name":"Untitled"
+      cookiedDataRaw = cookiedData[0].slice(1, -1).split('":"');
+
+      $clone.find("td:first").text(cookiedDataRaw[0]);
 
       $TABLE.find('table').append($clone);
     }
