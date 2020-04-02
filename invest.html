@@ -116,12 +116,8 @@
         }
       }
       cookie.split(',');
-      for(var i = 0; i < cookie.length; i++) {
-        var result = cookie[i].slice(1, -1);
-        cookie[i] = result;
-      }
 
-      $clone.find("td:first").text(cookie[0]);
+      $clone.find("td:first").text(cookie[0].slice(1, -1);));
 
       $TABLE.find('table').append($clone);
     }
