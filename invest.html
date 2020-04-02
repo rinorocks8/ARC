@@ -119,7 +119,7 @@
       cookied = cookie.split('},{');
       cookiedData = cookied.split(',');
 
-      $clone.find("td:first").text(cookied[1]);
+      $clone.find("td:first").text(cookiedData[1].slice(8,-1));
 
       $TABLE.find('table').append($clone);
     }
