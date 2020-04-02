@@ -89,10 +89,10 @@
   });
 
   $IBTN.click(function () {
-    Import();
+    ImportData();
   });
   
-  function Import(){
+  function ImportData(){
     if (document.cookie =! ""){
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
@@ -130,7 +130,7 @@
   jQuery.fn.pop = [].pop;
   jQuery.fn.shift = [].shift;
 
-  function export(){
+  function ExportData(){
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
@@ -157,12 +157,12 @@
   }
 
   $BTN.click(function () {
-    var data = export();
+    var data = ExportData();
     download("ARC-Banking.txt", JSON.stringify(data));
   });
 
   $TABLE.on('change', 'input', function () {
-    var data = export();
+    var data = ExportData();
     var d = new Date();
     document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
   });
