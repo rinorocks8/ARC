@@ -161,7 +161,7 @@
     download("ARC-Banking.txt", JSON.stringify(data));
   });
 
-  $TABLE.on("change", function () {
+  $TABLE.on("DOMSubtreeModified", function () {
     var data = ExportData();
     var d = new Date();
     document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
