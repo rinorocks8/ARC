@@ -100,7 +100,11 @@
   });
 
   $IBTN.click(function () {
-    $TABLE.find($('tr:not(:hidden)')).slice(1).remove()
+    $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
+    var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+    $clone.find("td").val('hello');
+
+    $TABLE.find('table').append($clone);
   });
 
   // A few jQuery helpers for exporting only
