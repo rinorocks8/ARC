@@ -101,8 +101,6 @@
 
   function Upload() {
     var fileUpload = document.getElementById("fileElem");
-    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.txt)$/;
-    if (regex.test(fileUpload.value.toLowerCase())) {
       document.getElementById("insert").innerHTML  = "here";
       if (typeof (FileReader) != "undefined") {
         var reader = new FileReader();
@@ -112,7 +110,6 @@
           document.cookie = "banking=" + e.target.result + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
         }
       }
-    }
     ImportData();
   }
 
