@@ -104,6 +104,7 @@
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
 
+      //selects the banking cookie
       var cookie = "";
       var ca = document.cookie.split(';');
       for(var i = 0; i < ca.length; i++) {
@@ -119,11 +120,15 @@
       cookied = cookie.split('},{');
       //cookied[i] is now every row saved -> "name":"Stir Fry","value":"undefined"
 
-      cookiedData = cookied[0].split(',');
-      //each column in each row - > "name":"Untitled"
-      cookiedDataRaw = cookiedData[0].slice(1, -1).split('":"')[1];
+      for(var i = 0; i < cookied.length; i++) {
+        cookiedData = cookied[i].split(',');
+        //each column in each row - > "name":"Untitled"
+        for(var b = 0; b < cookiedData.length; b++) {
+          cookiedDataRaw = cookiedData[b].slice(1, -1).split('":"')[1];
 
-      $clone.find("td:nth-child(1)").text(cookiedDataRaw);
+          $clone.find("td:nth-child(" + b + ")").text(cookiedDataRaw);
+        }
+      }
 
       $TABLE.find('table').append($clone);
     }
