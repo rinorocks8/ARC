@@ -90,6 +90,7 @@
 
   $IBTN.click(function () {
     Import();
+
   });
   function Import(){
     if (document.cookie =! ""){
@@ -129,7 +130,7 @@
   jQuery.fn.pop = [].pop;
   jQuery.fn.shift = [].shift;
 
-  $BTN.click(function () {
+  function export(){
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
@@ -152,32 +153,16 @@
       data.push(h);
     });
 
+    return data;
+  }
+
+  $BTN.click(function () {
+    var data = export();
     download("ARC-Banking.txt", JSON.stringify(data));
   });
 
   $TABLE.on('change', 'input', function () {
-    var $rows = $TABLE.find('tr:not(:hidden)');
-    var headers = [];
-    var data = [];
-
-    // Get the headers (add special header logic here)
-    $($rows.shift()).find('th:not(:empty)').each(function () {
-      headers.push($(this).text().toLowerCase());
-    });
-
-    // Turn all existing rows into a loopable array
-    $rows.each(function () {
-      var $td = $(this).find('td');
-      var h = {};
-
-      // Use the headers from earlier to name our hash keys
-      headers.forEach(function (header, i) {
-        h[header] = $td.eq(i).text();
-      });
-
-      data.push(h);
-    });
-
+    var data = export();
     var d = new Date();
     document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
   });
