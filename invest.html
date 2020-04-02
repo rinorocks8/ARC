@@ -110,8 +110,15 @@
           document.cookie = "banking=" + e.target.result + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
         }
       }*/
+    var input = event.target;
+
     var reader = new FileReader();
-    document.getElementById("insert").innerHTML = reader.readAsText(document.getElementById("fileElem").files[0]) ;
+    reader.onload = function(){
+      var dataURL = reader.result;
+      var output = document.getElementById("fileElem");
+      output.src = dataURL;
+    };
+    document.getElementById("insert").innerHTML = readAsDataURL(input.files[0]);
     var d = new Date();
     document.cookie = "banking=" + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
     ImportData();
