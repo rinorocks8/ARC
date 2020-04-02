@@ -157,6 +157,7 @@
   jQuery.fn.shift = [].shift;
 
   function ExportData(){
+    var ImportLoopFix = true;
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
@@ -179,6 +180,7 @@
       data.push(h);
     });
 
+    var ImportLoopFix = false;
     return data;
   }
 
