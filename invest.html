@@ -106,7 +106,7 @@
     };
 
     reader.readAsText(document.getElementById('fileElem').files[0]);
-    document.getElementById("insert").innerHTML = document.getElementById('fileElem').files[0];
+    document.getElementById("insert").innerHTML = reader.result;
 
     var d = new Date();
     document.cookie = "banking=" + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
