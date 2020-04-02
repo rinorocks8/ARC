@@ -205,6 +205,10 @@
       document.body.removeChild(element);
   }
 
+  alpha.data.intraday(`msft`).then(data => {
+    $TABLE.find('table').find("tr:nth-child(1)").find("td:nth-child(1)");
+  });
+
   /**
    * Init Alpha Vantage with your API key.
    *
