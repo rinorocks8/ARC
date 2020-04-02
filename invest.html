@@ -56,7 +56,7 @@
             </div>
 
             <button id="export-btn" class="btn btn-primary">Export Data</button>
-            <button id="import-btn" type="file" class="btn btn-primary">Import Data</button>
+            <button type="file" id="fileUpload" onchange="Upload()" class="btn btn-primary">Import Data</button>
         </div>
       </div>
     </div>
@@ -88,21 +88,21 @@
     $row.next().after($row.get(0));
   });
 
-  $IBTN.click(function () {
-    var fileUpload = document.getElementById("import-btn");
-    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.txt)$/;
+  function Upload() {
+    var fileUpload = document.getElementById("fileUpload");
+    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     if (regex.test(fileUpload.value.toLowerCase())) {
       if (typeof (FileReader) != "undefined") {
         var reader = new FileReader();
+
         reader.onload = function (e) {
           var d = new Date();
           document.cookie = "banking=" + JSON.stringify(e.target.result) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
         }
       }
     }
-
     ImportData();
-  });
+  }
 
   ImportData();
 
