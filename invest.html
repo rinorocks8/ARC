@@ -89,7 +89,7 @@
     $row.next().after($row.get(0));
   });
 
-  const fileSelect = document.getElementById("fileSelect"),
+  const fileSelect = document.getElementById("import-btn"),
     fileElem = document.getElementById("fileElem");
 
   fileSelect.addEventListener("click", function (e) {
@@ -99,7 +99,8 @@
   }, false);
 
   function Upload() {
-    var fileUpload = this.files;
+    var fileUpload = document.getElementById("fileUpload");
+    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     if (regex.test(fileUpload.value.toLowerCase())) {
       if (typeof (FileReader) != "undefined") {
