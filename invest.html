@@ -127,7 +127,7 @@
         //each column in each row - > "name":"Untitled"
         for(var b = 0; b < cookiedData.length; b++) {
           cookiedDataRaw = cookiedData[b].slice(1, -1).split('":"')[1];
-          $clone.find("td:nth-child(" + b + 1 + ")").text(cookiedDataRaw);
+          $clone.find("td:nth-child(" + b + 1 + ")").text(cookiedData.length+cookiedDataRaw);
         }
         $TABLE.find('table').append($clone);
       }
