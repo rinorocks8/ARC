@@ -102,8 +102,8 @@
   function Upload() {
     var fileUpload = document.getElementById("fileElem");
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.txt)$/;
-    document.getElementById("insert").innerHTML  = "here";
     if (regex.test(fileUpload.value.toLowerCase())) {
+      document.getElementById("insert").innerHTML  = "here";
       if (typeof (FileReader) != "undefined") {
         var reader = new FileReader();
         reader.onload = function (e) {
