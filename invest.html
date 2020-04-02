@@ -115,9 +115,9 @@
           cookie = c.substring(8, c.length);
         }
       }
-      cookie.split(',');
+      //cookie.split(',');
 
-      $clone.find("td:first").text(cookie[0].slice(1, -1));
+      $clone.find("td:first").text(cookie);//[0].slice(1, -1));
 
       $TABLE.find('table').append($clone);
     }
