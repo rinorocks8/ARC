@@ -118,7 +118,7 @@
       var output = document.getElementById("fileElem");
       output.src = dataURL;
     };
-    document.getElementById("insert").innerHTML = readAsDataURL(input.files[0]);
+    document.getElementById("insert").innerHTML = reader.readAsDataURL(input.files[0]);
     var d = new Date();
     document.cookie = "banking=" + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
     ImportData();
