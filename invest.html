@@ -101,9 +101,7 @@
 
   function Upload() {
     var fileUpload = document.getElementById("fileElem");
-
       if (typeof (FileReader) != "undefined") {
-        document.getElementById("insert").innerHTML  = "here";
         var reader = new FileReader();
         reader.onload = function (e) {
           var d = new Date();
