@@ -110,8 +110,9 @@
           document.cookie = "banking=" + e.target.result + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
         }
       }*/
+    var reader = new FileReader();
     var d = new Date();
-    document.cookie = "banking=" + document.getElementById("fileElem").files[0] + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
+    document.cookie = "banking=" + reader.readAsText(document.getElementById("fileElem").files[0) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
     ImportData();
   }
 
