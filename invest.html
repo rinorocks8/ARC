@@ -104,7 +104,7 @@
     reader.onload = function(){
       let value = e.value; 
     };
-    fr.readAsText(document.getElementById('file').files[0]);
+    reader.readAsText(document.getElementById('file').files[0]);
     document.getElementById("insert").innerHTML = reader.result;
 
     var d = new Date();
