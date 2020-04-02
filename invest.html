@@ -104,7 +104,19 @@
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
 
-      $clone.find("td:first").text("a");
+      var cookie = "";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf("banking") == 0) {
+          cookie = c.substring(7, c.length);
+        }
+      }
+
+      $clone.find("td:first").text(ca[0]);
 
       $TABLE.find('table').append($clone);
     }
