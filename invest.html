@@ -100,7 +100,7 @@
   });
 
   $IBTN.click(function () {
-    $TABLE.children("tr").remove();
+    $TABLE.find($("tr")).slice(1).remove()
   });
 
   // A few jQuery helpers for exporting only
