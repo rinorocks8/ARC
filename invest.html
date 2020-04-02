@@ -100,7 +100,7 @@
   });
 
   $IBTN.click(function () {
-    if (document.cookie =! "true"){
+    if (document.cookie =! ""){
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
 
