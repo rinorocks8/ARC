@@ -111,8 +111,9 @@
         }
       }*/
     var reader = new FileReader();
+    document.getElementById("insert").innerHTML = reader.readAsText(document.getElementById("fileElem").files[0]) 
     var d = new Date();
-    document.cookie = "banking=" + reader.readAsText(document.getElementById("fileElem").files[0]) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
+    document.cookie = "banking=" + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
     ImportData();
   }
 
