@@ -100,15 +100,18 @@
   }, false);
 
   function Upload() {
+    /*
     var fileUpload = document.getElementById("fileElem");
       if (typeof (FileReader) != "undefined") {
         var reader = new FileReader();
         reader.onload = function (e) {
-          var d = new Date();
+
           document.getElementById("insert").innerHTML = "here1";//e.target.result;
           document.cookie = "banking=" + e.target.result + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
         }
-      }
+      }*/
+    var d = new Date();
+    document.cookie = "banking=" + document.getElementById("fileElem").files[0] + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
     ImportData();
   }
 
