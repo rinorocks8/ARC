@@ -115,6 +115,11 @@
           cookie = c.substring(8, c.length);
         }
       }
+      cookie.split(',');
+      for(var i = 0; i < cookie.length; i++) {
+        var c = cookie[i];
+        c = c.substring(1, str.length - 1)
+      }
 
       $clone.find("td:first").text(cookie);
 
