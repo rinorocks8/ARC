@@ -100,9 +100,7 @@
   });
 
   $IBTN.click(function () {
-    $TABLE.find("tr:gt(0)").remove();
-    var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-    $TABLE.find('table').append($clone);
+    $TABLE.find("tr:gt(0)").detach();
   });
 
   // A few jQuery helpers for exporting only
