@@ -117,7 +117,7 @@
 
   var ImportLoopFix = false;
   function ImportData(){
-    var ImportLoopFix = true;
+    ImportLoopFix = true;
     if (document.cookie =! ""){
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
@@ -150,14 +150,14 @@
         $TABLE.find('table').append($clone);
       }
     }
-    var ImportLoopFix = false;
+    ImportLoopFix = false;
   }
   // A few jQuery helpers for exporting only
   jQuery.fn.pop = [].pop;
   jQuery.fn.shift = [].shift;
 
   function ExportData(){
-    var ImportLoopFix = true;
+    ImportLoopFix = true;
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
@@ -180,7 +180,7 @@
       data.push(h);
     });
 
-    var ImportLoopFix = false;
+    ImportLoopFix = false;
     return data;
   }
 
