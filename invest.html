@@ -113,7 +113,8 @@
     var input = event.target;
 
     var reader = new FileReader();
-    reader.onload = function(){
+    reader.onload = function(e){
+      let value = e.value;
       var dataURL = reader.result;
       var output = document.getElementById("fileElem");
       output.src = dataURL;
