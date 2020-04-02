@@ -120,6 +120,7 @@
       cookied = cookie.split('},{');
       //cookied[i] is now every row saved -> "name":"Stir Fry","value":"undefined"
 
+      var cookiedData;
       for(var i = 0; i < cookied.length; i++) {
         var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
         cookiedData = cookied[i].split(',');
