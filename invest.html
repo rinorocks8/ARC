@@ -100,7 +100,7 @@
   });
 
   $IBTN.click(function () {
-    $("#import-btn > tr").slice(1).remove();
+    $TABLE.find("tr").slice(1).remove()
   });
 
   // A few jQuery helpers for exporting only
