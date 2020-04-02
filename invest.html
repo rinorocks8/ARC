@@ -164,7 +164,7 @@
     download("ARC-Banking.txt", JSON.stringify(data));
   });
 
-  $TABLE.onchange(function () {
+  $TABLE.bind(function () {
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
