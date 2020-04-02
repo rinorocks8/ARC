@@ -102,11 +102,11 @@
   function Upload() {
     var reader = new FileReader();
     reader.onload = function(e){
-      let value = e.value;
+      let value = e.result;
     };
-
     reader.readAsText(document.getElementById('fileElem').files[0]);
-    document.getElementById("insert").innerHTML = reader.result;
+
+    document.getElementById("insert").innerHTML = value;
 
     var d = new Date();
     document.cookie = "banking=" + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
