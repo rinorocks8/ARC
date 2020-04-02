@@ -56,7 +56,7 @@
             </div>
 
             <button id="export-btn" class="btn btn-primary">Export Data</button>
-            <button id="import-btn" class="btn btn-primary">Import Data</button>
+            <button id="import-btn" type="file" class="btn btn-primary">Import Data</button>
         </div>
       </div>
     </div>
@@ -89,10 +89,12 @@
   });
 
   $IBTN.click(function () {
+
+
     ImportData();
   });
 
-  ImportData()
+  ImportData();
 
   function ImportData(){
     if (document.cookie =! ""){
