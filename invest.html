@@ -100,13 +100,27 @@
   });
 
   $IBTN.click(function () {
-    $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
-    var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+    if (document.cookie =! []){
+      $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
+      var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
 
+      var output = "";
+      var name = banking + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          output = c.substring(name.length, c.length);
+        }
+      }
 
-    $clone.find("td:first").text(document.cookie);
+      $clone.find("td:first").text(output);
 
-    $TABLE.find('table').append($clone);
+      $TABLE.find('table').append($clone);
+    }
   });
 
   // A few jQuery helpers for exporting only
