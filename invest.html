@@ -123,7 +123,7 @@
       var cookiedData;
       for(var i = 0; i < cookied.length; i++) {
         var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-        cookiedData = cookied[i].split(',');
+        cookiedData = cookied[i].slice(1, -1).split(',');
         //each column in each row - > "name":"Untitled"
         for(var b = 0; b < cookiedData.length; b++) {
           cookiedDataRaw = cookiedData[b].slice(1, -1).split('":"')[1];
