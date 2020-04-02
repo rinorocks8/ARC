@@ -117,7 +117,7 @@
       }
       cookie = cookie.slice(2, -2);
       cookied = cookie.split('},{');
-      cookiedData = cookied.split(',');
+      cookiedData = cookied[0].split(',');
 
       $clone.find("td:first").text(cookiedData[1].slice(8,-1));
 
