@@ -283,8 +283,8 @@
         $.ajax({
           url:'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt',
           success: function (data){
-            data.split('\n');
-            document.getElementById("stock").innerHTML;
+            //data.split('\n');
+            document.getElementById("stock").innerHTML = data;
           }
         });
 
