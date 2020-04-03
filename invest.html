@@ -243,11 +243,11 @@
       //cost basis
       $td.eq(4).html("$"+$td.eq(1).html()*$td.eq(2).html());
       //market value
-      $td.eq(5).html("$"+$td.eq(1).html()*$td.eq(3).html());
+      $td.eq(5).html("$"+$td.eq(1).html()*$td.eq(3).html().substr(1));
       //gain/loss
-      $td.eq(6).html("$"+$td.eq(5).html()-$td.eq(4).html());
+      $td.eq(6).html("$"+$td.eq(5).html().substr(1)-$td.eq(4).html().substr(1));
       //growth
-      $td.eq(7).html((($td.eq(6).html()/$td.eq(4).html())*100).toFixed(2)+"%");
+      $td.eq(7).html((($td.eq(6).html().substr(1)/$td.eq(4).html().substr(1))*100).toFixed(2)+"%");
       //annual dividend
       $td.eq(8).html("$"+4*StockUpdate($td.eq(0).html())[1]);
     }
