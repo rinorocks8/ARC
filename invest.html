@@ -236,8 +236,7 @@
     var $rows = $TABLE.find('tr:not(:hidden)');
     for(var i = 1; i < $rows.length; i++) {
       var $td = $rows.eq(i).find('td');
-      let result = StockUpdate('msft');
-      $td.eq(3).html(result);
+      $td.eq(3).html(StockUpdate('msft'));
     }
   }
 
