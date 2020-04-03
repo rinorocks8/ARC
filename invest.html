@@ -252,6 +252,27 @@
     }
   }
 
+  function StockDatabase() {
+    $(function() {
+      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
+          var lines data.split("\n");
+
+      });
+    });
+  }
+
+  function StockDatabaseData() {
+    $(function() {
+      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
+          var lines data.split("\n");
+          if (lines[0]=date){
+            return true;
+          }
+      });
+    });
+    return false;
+  }
+
   var today = new Date();
   var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
 
