@@ -40,6 +40,7 @@
                   <th>Buy Price</th>
                   <th>Market Price</th>
                   <th>Cost Basis</th>
+                  <th>Market Value</th>
                   <th>Gain/Loss Basis</th>
                   <th>Growth</th>
                   <th>Annual Dividen</th>
@@ -54,6 +55,7 @@
                   <td contenteditable="true" onkeyup="CookieUpdate();">MSFT</td>
                   <td contenteditable="true" onkeyup="CookieUpdate();">10</td>
                   <td contenteditable="true" onkeyup="CookieUpdate();">90</td>
+                  <td contenteditable="false"></td>
                   <td contenteditable="false"></td>
                   <td contenteditable="false"></td>
                   <td contenteditable="false"></td>
@@ -237,6 +239,7 @@
     for(var i = 1; i < $rows.length; i++) {
       var $td = $rows.eq(i).find('td');
       $td.eq(3).html(StockUpdate($td.eq(0).html()));
+      $td.eq(4).html($td.eq(1).html()*$td.eq(2).html())
     }
   }
 
