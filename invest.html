@@ -84,6 +84,7 @@
 </html>
 
 <script src="bundle.js"></script>
+<script src="pulledstocks.js"></script>
 
 <script type="text/javascript">
   var $TABLE = $('#table');
@@ -252,27 +253,39 @@
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
   function StockUpdate(inputsymbol){
-    alpha.data.daily(inputsymbol).then(data => {
-      let {
-        'Meta Data': {
-          '1. Information':information,
-          '2. Symbol':symbol,
-          '3. Last Refreshed':lastrefreshed,
-          '4. Output Size':outputsize,
-          '5. Time Zone':timezone
-        },
-        'Time Series (Daily)': {
-          [date]: {
-            '1. open':open,
-            '2. high':high,
-            '3. low':low,
-            '4. close':close,
-            '5. volume':volume,
+    if(){
+
+    } else {
+      //pull stock
+      alpha.data.daily(inputsymbol).then(data => {
+        let {
+          'Meta Data': {
+            '1. Information':information,
+            '2. Symbol':symbol,
+            '3. Last Refreshed':lastrefreshed,
+            '4. Output Size':outputsize,
+            '5. Time Zone':timezone
+          },
+          'Time Series (Daily)': {
+            [date]: {
+              '1. open':open,
+              '2. high':high,
+              '3. low':low,
+              '4. close':close,
+              '5. volume':volume,
+            }
           }
-        }
-      } = data;
-      return open;
-    });
+        } = data;
+
+        var fs = require('fs')
+        var logger = fs.createWriteStream('pulledstocks.txt', {
+          flags: 'a' // 'a' means appending (old data will be preserved)
+        })
+        logger.write('AAPL:220');
+
+        return open;
+      });
+    }
   }
 </script>
 
