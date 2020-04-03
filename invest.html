@@ -269,6 +269,9 @@
         }
       } = data;
       return open;
+    }).catch(function(error) {
+        return "Invalid Symbol";
+      }
     });
   }
 
