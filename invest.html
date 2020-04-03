@@ -268,18 +268,21 @@
     //pretend the local storage of stock prices is connected to github
     if(true===true){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
-        //temporary
-        if (inputsymbol==='msft'){
-          return [153,0.51];
-        } else if (inputsymbol==='wm'){
-          return [89,0.51];
-        } else if (inputsymbol==='aapl'){
-          return [242,0.77];
-        } else if (inputsymbol==='coke'){
-          return [200,0.25];
-        } else {
+
+        $.ajax({
+          url:'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt',
+          success: function (data){
+            data.split('\n');
+            document.getElementById("stock").hmtl = data[0];
+          }
+        });
+
+
+
+        /*
+        else {
           return ['Symbol not recognized',0];
-        }
+        */
 
       } else { //local storage doesnt contain this stock and pull its
         alpha.data.daily_adjusted(inputsymbol).then(data => {
