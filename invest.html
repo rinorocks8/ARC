@@ -254,11 +254,13 @@
 
   function StockUpdate(inputsymbol){
     if(true===true){
+      
       var fs = require('fs')
       var logger = fs.createWriteStream('pulledstocks.txt', {
         flags: 'a' // 'a' means appending (old data will be preserved)
       })
       logger.write('AAPL:220');
+
     } else {
       //pull stock
       alpha.data.daily(inputsymbol).then(data => {
