@@ -236,7 +236,8 @@
     var $rows = $TABLE.find('tr:not(:hidden)');
     for(var i = 1; i < $rows.length; i++) {
       var $td = $rows.eq(i).find('td');
-      $td.eq(3).html(StockUpdate('msft'));
+      let result = StockUpdate('msft');
+      $td.eq(3).html(result);
     }
   }
 
@@ -250,8 +251,8 @@
   //const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
   const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
 
-  function StockUpdate(x){
-    alpha.data.daily(x).then(data => {
+  function StockUpdate(inputsymbol){
+    alpha.data.daily(inputsymbol).then(data => {
       let {
         'Meta Data': {
           '1. Information':information,
