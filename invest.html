@@ -233,14 +233,14 @@
   }
 
   function PushUpdate() {
-    var i = 0;
+    var a = 0;
     var $rows = $TABLE.find('tr:not(:hidden)');
     for(var i = 2; i < $rows.length; i++) {
       var $td = $(this).find('td');
       $td[3].innerHTML =  StockUpdate('msft');
-      i++;
+      a++;
     }
-    document.getElementById('stock').innerHTML = i;
+    document.getElementById('stock').innerHTML = a;
   }
 
   var today = new Date();
