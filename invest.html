@@ -217,8 +217,8 @@
   const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
 
   alpha.data.daily(`msft`).then(data => {
-    let { metadata: [{ information, symbol, lastrefreshed, outputsize, timezone }] } = data;
-    document.getElementById('stock').innerHTML = symbol;
+    let { 'Meta Data': { '1. Information':information} } = data;
+    document.getElementById('stock').innerHTML = information;
     //document.getElementById('stock').innerHTML = JSON.stringify(JSON.stringify(data));
   });
 
