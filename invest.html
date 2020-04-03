@@ -235,12 +235,14 @@
   function PushUpdate() {
     var a = 0;
     var $rows = $TABLE.find('tr:not(:hidden)');
+    /*
     for(var i = 0; i < $rows.length; i++) {
       //var $td = $(this).find('td');
       $rows.cells[4].innerHTML= 'hello';
       //$td.eq(3).innerHTML =  'hello';//StockUpdate('msft');
       a++;
     }
+    */
     document.getElementById('stock').innerHTML = $rows.length;
   }
 
