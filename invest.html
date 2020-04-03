@@ -261,7 +261,7 @@
     });
   }
 
-  function StockDatabaseData() {
+  function StockDatabaseDate() {
     $(function() {
       $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
           let lines = data.split('\n');
@@ -285,7 +285,7 @@
 
   function StockUpdate(inputsymbolraw){
     var inputsymbol = inputsymbolraw.toLowerCase();
-    alert(StockDatabaseData());
+    alert(StockDatabaseDate());
     //pretend the local storage of stock prices is connected to github
     if(true===true){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
