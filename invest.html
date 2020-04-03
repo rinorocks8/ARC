@@ -209,7 +209,7 @@
   }
 
   var today = new Date();
-  var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate());
+  var date = String(today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()));
 
   function pad2(number) {
     return (number < 10 ? '0' : '') + number;
