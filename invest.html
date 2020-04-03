@@ -269,15 +269,15 @@
       if(true===true){ //if local storage contains this stock
         //temporary
         if (inputsymbol==='msft'){
-          return 153,0.51;
+          return [153,0.51];
         } else if (inputsymbol==='wm'){
-          return 89,0.51;
+          return [89,0.51];
         } else if (inputsymbol==='aapl'){
-          return 242,0.77;
+          return [242,0.77];
         } else if (inputsymbol==='coke'){
-          return 200,0.25;
+          return [200,0.25];
         } else {
-          return 'Symbol not recognized',0;
+          return ['Symbol not recognized',0];
         }
 
       } else { //local storage doesnt contain this stock and pull its
@@ -304,7 +304,7 @@
             }
           } = data;
           //add this stock to local storage
-          return open,dividend;
+          return [open,dividend];
         });
       }
     } else { //if date is not correct
