@@ -233,13 +233,16 @@
   }
 
   function PushUpdate() {
+    var i = 0;
     var $rows = $TABLE.find('tr:not(:hidden)');
     $rows.each(function () {
       var $td = $(this).find('td');
       $td.each(function () {
-        $td[3].innerHTML =  'hello';//StockUpdate($td[0].innerHTML);
+        $td[3].innerHTML =  'hello';
+        i++;//StockUpdate($td[0].innerHTML);
       });
       //$td[3].innerHTML =  'hello';//StockUpdate('msft');//StockUpdate($td[0].innerHTML);
+      //i++;
     });
     /*
     for(var i = 2; i < $rows.length; i++) {
@@ -247,8 +250,7 @@
       $td[3].innerHTML =  StockUpdate('msft');
     }
     */
-
-    //document.getElementById('stock').innerHTML = ;
+    document.getElementById('stock').innerHTML = i;
   }
 
   var today = new Date();
