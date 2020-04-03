@@ -217,7 +217,7 @@
   const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
 
   alpha.data.intraday(`msft`).then(data => {
-    document.getElementById('stock').innerHTML = JSON.stringify(data);
+    document.getElementById('stock').innerHTML = JSON.stringify(JSON.stringify(data));
   });
 
 </script>
