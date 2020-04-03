@@ -239,7 +239,7 @@
     for(var i = 1; i < $rows.length; i++) {
       var $td = $rows.eq(i).find('td');
       //marketprice
-      $td.eq(3).html(StockUpdate($td.eq(0).html()));
+      $td.eq(3).html(StockUpdate($td.eq(0).html())[0]);
       //costbasis
       $td.eq(4).html($td.eq(1).html()*$td.eq(2).html());
       //marketvalue
