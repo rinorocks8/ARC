@@ -208,12 +208,9 @@
       document.body.removeChild(element);
   }
 
-  /**
-   * Init Alpha Vantage with your API key.
-   *
-   * @param {String} key
-   *   Your Alpha Vantage API key.
-   */
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
   const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
 
   alpha.data.daily(`msft`).then(data => {
@@ -224,9 +221,18 @@
         '3. Last Refreshed':lastrefreshed,
         '4. Output Size':outputsize,
         '5. Time Zone':timezone
+      },
+      'Time Series (Daily)': {
+        date:{
+          '1. open':open,
+          '2. high':high,
+          '3. low':low,
+          '4. close':close,
+          '5. volume':volume,
+        }
       }
     } = data;
-    document.getElementById('stock').innerHTML = symbol;
+    document.getElementById('stock').innerHTML = open;
     //document.getElementById('stock').innerHTML = JSON.stringify(JSON.stringify(data));
   });
 
