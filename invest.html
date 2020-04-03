@@ -264,6 +264,18 @@
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
   function StockUpdate(inputsymbolraw){
+
+
+    var url = 'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt';
+
+    var reader = new FileReader();
+    reader.onload = function(e){
+       let output = event.target.result;
+    };
+    reader.readAsDataURL(url);
+
+    document.getElementById('stock').innerHtml = 'here';
+
     var inputsymbol = inputsymbolraw.toLowerCase();
     //pretend the local storage of stock prices is connected to github
     if(true===true){ //if(date is correct)
@@ -279,16 +291,6 @@
         } else {
             return ['Symbol not recognized',0];
         }
-
-        var url = 'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt';
-
-        var reader = new FileReader();
-        reader.onload = function(e){
-           let output = event.target.result;
-        };
-        reader.readAsDataURL(url);
-
-        document.getElementById('stock').innerHtml = 'here';
 
         /*
         else {
