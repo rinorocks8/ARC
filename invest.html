@@ -93,25 +93,21 @@
   $('.table-add').click(function () {
     var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
     $TABLE.find('table').append($clone);
-    PushUpdate();
   });
 
   $('.table-remove').click(function () {
     $(this).parents('tr').detach();
-    PushUpdate();
   });
 
   $('.table-up').click(function () {
     var $row = $(this).parents('tr');
     if ($row.index() === 1) return; // Don't go above the header
     $row.prev().before($row.get(0));
-    PushUpdate();
   });
 
   $('.table-down').click(function () {
     var $row = $(this).parents('tr');
     $row.next().after($row.get(0));
-    PushUpdate();
   });
 
   const fileSelect = document.getElementById("import-btn"),
@@ -135,7 +131,9 @@
 
   ImportData();
 
+  var ImportLoopFix = false;
   function ImportData(){
+    ImportLoopFix = true;
     if (document.cookie =! ""){
       $TABLE.find($('tr:not(:hidden)')).slice(1).remove();
       var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
@@ -168,13 +166,14 @@
         $TABLE.find('table').append($clone);
       }
     }
-    PushUpdate();
+    ImportLoopFix = false;
   }
   // A few jQuery helpers for exporting only
   jQuery.fn.pop = [].pop;
   jQuery.fn.shift = [].shift;
 
   function ExportData(){
+    ImportLoopFix = true;
     var $rows = $TABLE.find('tr:not(:hidden)');
     var headers = [];
     var data = [];
@@ -196,6 +195,8 @@
 
       data.push(h);
     });
+
+    ImportLoopFix = false;
     return data;
   }
 
@@ -204,11 +205,13 @@
     download("ARC-Banking.txt", JSON.stringify(data));
   });
 
-  function PushUpdate() {
-    var data = ExportData();
-    var d = new Date();
-    document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
-  }
+  $TABLE.on("DOMSubtreeModified", function () {
+    if (ImportLoopFix === false) {
+      var data = ExportData();
+      var d = new Date();
+      document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
+    }
+  });
 
   function download(filename, text) {
       var element = document.createElement('a');
@@ -233,7 +236,6 @@
   //const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
   const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
 
-/*
   alpha.data.daily(`msft`).then(data => {
     let {
       'Meta Data': {
@@ -255,7 +257,6 @@
     } = data;
     document.getElementById('stock').innerHTML = open;
   });
-  */
 
 </script>
 
