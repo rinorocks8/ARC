@@ -84,7 +84,6 @@
 </html>
 
 <script src="bundle.js"></script>
-<script src="pulledstocks.js"></script>
 
 <script type="text/javascript">
   var $TABLE = $('#table');
@@ -254,7 +253,7 @@
 
   function StockUpdate(inputsymbol){
     if(true===true){
-      
+
       var fs = require('fs')
       var logger = fs.createWriteStream('pulledstocks.txt', {
         flags: 'a' // 'a' means appending (old data will be preserved)
