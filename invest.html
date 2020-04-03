@@ -262,6 +262,7 @@
   }
 
   function StockDatabaseData() {
+    /*
     $(function() {
       $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
           var lines = data.split('\n');
@@ -270,7 +271,12 @@
           }
       });
     });
-    return false;
+*/
+    $(function() {
+      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
+          $('#stock').html(data);
+      });
+    });
   }
 
   var today = new Date();
