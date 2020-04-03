@@ -253,8 +253,12 @@
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
   function StockUpdate(inputsymbol){
-    if(){
-
+    if(true===true){
+      var fs = require('fs')
+      var logger = fs.createWriteStream('pulledstocks.txt', {
+        flags: 'a' // 'a' means appending (old data will be preserved)
+      })
+      logger.write('AAPL:220');
     } else {
       //pull stock
       alpha.data.daily(inputsymbol).then(data => {
@@ -277,11 +281,7 @@
           }
         } = data;
 
-        var fs = require('fs')
-        var logger = fs.createWriteStream('pulledstocks.txt', {
-          flags: 'a' // 'a' means appending (old data will be preserved)
-        })
-        logger.write('AAPL:220');
+
 
         return open;
       });
