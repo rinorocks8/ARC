@@ -218,7 +218,7 @@
 
   alpha.data.daily(`msft`).then(data => {
     //document.getElementById('stock').innerHTML = JSON.stringify(JSON.stringify(data));
-    document.getElementById('stock').innerHTML = data."Meta Data"."2. Symbol";
+    document.getElementById('stock').innerHTML = data[0][0].value;
   });
 
 </script>
