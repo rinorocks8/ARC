@@ -251,42 +251,50 @@
   //const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
-  function StockUpdate(inputsymbol){
-    if(true===true){
+  function StockUpdate(inputsymbolraw){
+    var inputstock = inputsymbolraw.toLowerCase();
+    //pretend the local storage of stock prices is connected to github
+    if(true===true){ //if(date is correct)
+      if(true===true){ //if local storage contains this stock
+        if (inputsymbol='msft'){
+          return 153;
+        } else if (inputsymbol='wm'){
+          return 89;
+        } else if (inputsymbol='aapl'){
+          return 242;
+        } else if (inputsymbol='coke'){
+          return 200;
+        } else {
+          return 'Symbol not recognized';
+        }
 
-      var fs = require('fs')
-      var logger = fs.createWriteStream('pulledstocks.txt', {
-        flags: 'a' // 'a' means appending (old data will be preserved)
-      })
-      logger.write('AAPL:220');
-      logger.end;
 
-    } else {
-      //pull stock
-      alpha.data.daily(inputsymbol).then(data => {
-        let {
-          'Meta Data': {
-            '1. Information':information,
-            '2. Symbol':symbol,
-            '3. Last Refreshed':lastrefreshed,
-            '4. Output Size':outputsize,
-            '5. Time Zone':timezone
-          },
-          'Time Series (Daily)': {
-            [date]: {
-              '1. open':open,
-              '2. high':high,
-              '3. low':low,
-              '4. close':close,
-              '5. volume':volume,
+      } else { //local storage doesnt contain this stock and pull its
+        alpha.data.daily(inputsymbol).then(data => {
+          let {
+            'Meta Data': {
+              '1. Information':information,
+              '2. Symbol':symbol,
+              '3. Last Refreshed':lastrefreshed,
+              '4. Output Size':outputsize,
+              '5. Time Zone':timezone
+            },
+            'Time Series (Daily)': {
+              [date]: {
+                '1. open':open,
+                '2. high':high,
+                '3. low':low,
+                '4. close':close,
+                '5. volume':volume,
+              }
             }
-          }
-        } = data;
-
-
-
-        return open;
-      });
+          } = data;
+          //add this stock to local storage
+          return open;
+        });
+      }
+    } else { //if date is not correct
+      //clear local storage and update date
     }
   }
 </script>
