@@ -229,10 +229,11 @@
       document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
 
       var $rows = $TABLE.find('tr:not(:hidden)');
-      var $td = $(this).find('td');
-
-      $td.each(function () {
+      $rows.each(function () {
+        var $td = $(this).find('td');
+        $td.each(function () {
           $td[4].innerHTML = $td[0].innerHTML;
+        });
       });
     }
   }
