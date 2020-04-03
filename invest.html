@@ -214,10 +214,10 @@
   function pad2(number) {
     return (number < 10 ? '0' : '') + number;
   }
-  document.getElementById('stock').innerHTML = date;
+
   //const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
   const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
-  /*
+
   alpha.data.daily(`msft`).then(data => {
     let {
       'Meta Data': {
@@ -239,7 +239,6 @@
     } = data;
     document.getElementById('stock').innerHTML = open;
   });
-  */
 
 </script>
 
