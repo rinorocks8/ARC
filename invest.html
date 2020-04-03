@@ -215,7 +215,6 @@
     return (number < 10 ? '0' : '') + number;
   }
 
-  document.getElementById('stock').innerHTML = date;
   const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
 
   alpha.data.daily(`msft`).then(data => {
