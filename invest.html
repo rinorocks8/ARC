@@ -265,14 +265,15 @@
 
   function StockUpdate(inputsymbolraw){
 
+    $.ajax({
+      url:'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt',
+      success: function (data){
+        //parse your data here
+        //you can split into lines using data.split('\n')
+        //an use regex functions to effectively parse it
+      }
+    });
 
-    var url = 'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt';
-
-    var reader = new FileReader();
-    reader.onload = function(e){
-       let output = event.target.result;
-    };
-    reader.readAsDataURL(url);
 
     document.getElementById('stock').innerHtml = 'here';
 
