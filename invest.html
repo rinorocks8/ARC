@@ -235,15 +235,13 @@
   function PushUpdate() {
     var a = 0;
     var $rows = $TABLE.find('tr:not(:hidden)');
-    /*
-    for(var i = 0; i < $rows.length; i++) {
-      //var $td = $(this).find('td');
-      $rows.cells[4].innerHTML= 'hello';
+    for(var i = 1; i < $rows.length; i++) {
+      var $td = $(this).find('td');
+      a = $td.length
       //$td.eq(3).innerHTML =  'hello';//StockUpdate('msft');
-      a++;
+      //a++;
     }
-    */
-    document.getElementById('stock').innerHTML = $rows.length;
+    document.getElementById('stock').innerHTML = a;
   }
 
   var today = new Date();
