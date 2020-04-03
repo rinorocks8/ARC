@@ -236,10 +236,10 @@
     var a = 0;
     var $rows = $TABLE.find('tr:not(:hidden)');
     for(var i = 0; i < $rows.length; i++) {
-      var $td = $(this).find('td');
+      //var $td = $(this).find('td');
+      $(this).find("td").eq(3).html() = 'hello';
       //$td.eq(3).innerHTML =  'hello';//StockUpdate('msft');
       a++;
-      $(this).find("td:nth-child(4)").innerHTML = 'hello';
     }
     document.getElementById('stock').innerHTML = a;
   }
