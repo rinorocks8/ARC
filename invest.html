@@ -286,9 +286,9 @@
 
   function StockUpdate(inputsymbolraw){
     var inputsymbol = inputsymbolraw.toLowerCase();
+    alert(StockDatabaseData());
     //pretend the local storage of stock prices is connected to github
-    if(StockDatabaseData()===true){ //if(date is correct)
-      alert("hello");
+    if(true===true){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
         if (inputsymbol==='msft'){
           return [153,0.51];
