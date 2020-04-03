@@ -247,7 +247,7 @@
       //gain/loss
       $td.eq(6).html($td.eq(5).html()-$td.eq(4).html());
       //growth
-      $td.eq(7).html($td.eq(6).html()/$td.eq(4).html());
+      $td.eq(7).html(% + (($td.eq(6).html()/$td.eq(4).html())*100).toFixed(2));
     }
   }
 
