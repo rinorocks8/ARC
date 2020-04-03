@@ -51,9 +51,9 @@
                 </tr>
                 <!-- This is our clonable table line -->
                 <tr class="hide">
-                  <td contenteditable="true" onkeyup="PushUpdate();">MSFT</td>
-                  <td contenteditable="true" onkeyup="PushUpdate();">10</td>
-                  <td contenteditable="true" onkeyup="PushUpdate();">90</td>
+                  <td contenteditable="true" onkeyup="CookieUpdate();">MSFT</td>
+                  <td contenteditable="true" onkeyup="CookieUpdate();">10</td>
+                  <td contenteditable="true" onkeyup="CookieUpdate();">90</td>
                   <td contenteditable="false"></td>
                   <td contenteditable="false"></td>
                   <td contenteditable="false"></td>
@@ -93,25 +93,25 @@
   $('.table-add').click(function () {
     var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
     $TABLE.find('table').append($clone);
-    PushUpdate();
+    CookieUpdate();
   });
 
   $('.table-remove').click(function () {
     $(this).parents('tr').detach();
-    PushUpdate();
+    CookieUpdate();
   });
 
   $('.table-up').click(function () {
     var $row = $(this).parents('tr');
     if ($row.index() === 1) return; // Don't go above the header
     $row.prev().before($row.get(0));
-    PushUpdate();
+    CookieUpdate();
   });
 
   $('.table-down').click(function () {
     var $row = $(this).parents('tr');
     $row.next().after($row.get(0));
-    PushUpdate();
+    CookieUpdate();
   });
 
   const fileSelect = document.getElementById("import-btn"),
@@ -222,21 +222,25 @@
       document.body.removeChild(element);
   }
 
-  function PushUpdate() {
+  function CookieUpdate() {
     if (ImportLoopFix === false) {
       var data = ExportData();
       var d = new Date();
       document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
-      var ff = 0;
-      var $rows = $TABLE.find('tr:not(:hidden)');
-      $rows.each(function () {
-        var $td = $(this).find('td');
-        $td.each(function () {
-          ff++;//$td[3].innerHTML =  StockUpdate('msft');//StockUpdate($td[0].innerHTML);
-        });
-      });
-      document.getElementById('stock').innerHTML = String(ff);
+      PushUpdate();
     }
+  }
+
+  function PushUpdate() {
+    var ff = 0;
+    var $rows = $TABLE.find('tr:not(:hidden)');
+    $rows.each(function () {
+      var $td = $(this).find('td');
+      $td.each(function () {
+        ff++;//$td[3].innerHTML =  StockUpdate('msft');//StockUpdate($td[0].innerHTML);
+      });
+    });
+    document.getElementById('stock').innerHTML = String(ff);
   }
 
   var today = new Date();
