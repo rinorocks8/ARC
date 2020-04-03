@@ -232,14 +232,6 @@
     }
   }
 
-  function PushUpdate() {
-    var $rows = $TABLE.find('tr:not(:hidden)');
-    for(var i = 1; i < $rows.length; i++) {
-      var $td = $rows.eq(i).find('td');
-      $td.eq(3).html(StockUpdate('msft'));
-    }
-  }
-
   var today = new Date();
   var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
 
@@ -272,6 +264,14 @@
       } = data;
       return open;
     });
+  }
+
+  function PushUpdate() {
+    var $rows = $TABLE.find('tr:not(:hidden)');
+    for(var i = 1; i < $rows.length; i++) {
+      var $td = $rows.eq(i).find('td');
+      $td.eq(3).html(StockUpdate('msft'));
+    }
   }
 
 </script>
