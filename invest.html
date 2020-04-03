@@ -251,9 +251,9 @@
       //annual dividend
       $td.eq(8).html("$"+4*StockUpdate($td.eq(0).html())[1]);
       //dividend yield
-      $td.eq(8).html(($td.eq(8).html().substr(1)/$td.eq(3).html().substr(1)*100).toFixed(2)+"%");
+      $td.eq(9).html(($td.eq(8).html().substr(1)/$td.eq(3).html().substr(1)*100).toFixed(2)+"%");
       //yield on cost
-      $td.eq(8).html(($td.eq(8).html().substr(1)/$td.eq(2).html*100).toFixed(2)+"%");
+      $td.eq(10).html(($td.eq(8).html().substr(1)/$td.eq(2).html*100).toFixed(2)+"%");
     }
   }
 
