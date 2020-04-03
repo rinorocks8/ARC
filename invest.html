@@ -251,7 +251,6 @@
   const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
 
   function StockUpdate(inputsymbol){
-    return 100;
     alpha.data.daily(inputsymbol).then(data => {
       let {
         'Meta Data': {
