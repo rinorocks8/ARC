@@ -269,19 +269,19 @@
       if(true===true){ //if local storage contains this stock
         //temporary
         if (inputsymbol==='msft'){
-          return 153;
+          return 153,0.51;
         } else if (inputsymbol==='wm'){
-          return 89;
+          return 89,0.51;
         } else if (inputsymbol==='aapl'){
-          return 242;
+          return 242,0.77;
         } else if (inputsymbol==='coke'){
-          return 200;
+          return 200, 0.25;
         } else {
-          return inputsymbol;//'Symbol not recognized';
+          return 'Symbol not recognized',0;
         }
 
       } else { //local storage doesnt contain this stock and pull its
-        alpha.data.daily(inputsymbol).then(data => {
+        alpha.data.daily_adjusted(inputsymbol).then(data => {
           let {
             'Meta Data': {
               '1. Information':information,
@@ -296,12 +296,15 @@
                 '2. high':high,
                 '3. low':low,
                 '4. close':close,
-                '5. volume':volume,
+                '5. adjusted close':adjustedclose,
+                '6. volume':volume,
+                '7. dividend amount':dividend,
+                '8. split coefficient':splitcoefficent
               }
             }
           } = data;
           //add this stock to local storage
-          return open;
+          return open,dividend;
         });
       }
     } else { //if date is not correct
