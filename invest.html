@@ -280,13 +280,11 @@
             return ['Symbol not recognized',0];
         }
 
-        $(document).ready(function() {
-          var url = 'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt';
-
-          $.get(url, function(data) {
-              document.getElementById('stock').innerHTML = data;
-            });
-        });
+        const fileReader = new FileReader();
+        fileReader.onload = (event) => let output = event.target.result;
+        var url = 'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt';
+        fileReader.readAsDataURL(url);
+        document.getElementById('stock').innerHtml = output;
 
         /*
         else {
