@@ -131,12 +131,6 @@
   ImportData();
   PushUpdate();
 
-  $(function() {
-    $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
-        $('#stock').html(data);
-    });
-  });
-
   var ImportLoopFix = false;
   function ImportData(){
     ImportLoopFix = true;
