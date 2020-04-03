@@ -210,7 +210,7 @@
 
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
+  document.getElementById('stock').innerHTML = date;
   const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
 
   alpha.data.daily(`msft`).then(data => {
@@ -223,7 +223,7 @@
         '5. Time Zone':timezone
       },
       'Time Series (Daily)': {
-        String(date): {
+        date: {
           '1. open':open,
           '2. high':high,
           '3. low':low,
