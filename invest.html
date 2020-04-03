@@ -209,14 +209,6 @@
     download("ARC-Banking.txt", JSON.stringify(data));
   });
 
-  function PushUpdate() {
-    if (ImportLoopFix === false) {
-      var data = ExportData();
-      var d = new Date();
-      document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
-    }
-  }
-
   function download(filename, text) {
       var element = document.createElement('a');
       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -228,6 +220,19 @@
       element.click();
 
       document.body.removeChild(element);
+  }
+
+  function PushUpdate() {
+    if (ImportLoopFix === false) {
+      var data = ExportData();
+      var d = new Date();
+      document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
+
+      $TABLE.find('tr:not(:hidden)').each(function () {
+          find("td:nth-child(1)").innerHTML
+      }
+      StockUpdate();
+    }
   }
 
   var today = new Date();
