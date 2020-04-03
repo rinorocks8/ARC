@@ -234,8 +234,6 @@
 
   function PushUpdate() {
     var a = 0;
-    $TABLE.rows[0].cells[0].innerHTML= 'hello';
-    /*
     var $rows = $TABLE.find('tr:not(:hidden)');
     for(var i = 0; i < $rows.length; i++) {
       //var $td = $(this).find('td');
@@ -244,7 +242,7 @@
       a++;
     }
     */
-    document.getElementById('stock').innerHTML = a;
+    document.getElementById('stock').innerHTML = $rows.length;
   }
 
   var today = new Date();
