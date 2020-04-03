@@ -264,17 +264,6 @@
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
   function StockUpdate(inputsymbolraw){
-    $.ajax({
-        type:    "GET",
-        url:     "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt",
-        success: function(text) {
-            document.getElementById('stock').innerHtml = text;
-        },
-        error:   function() {
-            // An error occurred
-        }
-    });
-
     var inputsymbol = inputsymbolraw.toLowerCase();
     //pretend the local storage of stock prices is connected to github
     if(true===true){ //if(date is correct)
