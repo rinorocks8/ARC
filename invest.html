@@ -252,10 +252,11 @@
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
   function StockUpdate(inputsymbolraw){
-    var inputsymbol = inputsymbolraw.toString().toLowerCase();
+    var inputsymbol = inputsymbolraw.toLowerCase();
     //pretend the local storage of stock prices is connected to github
     if(true===true){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
+        //temporary
         if (inputsymbol==='msft'){
           return 153;
         } else if (inputsymbol==='wm'){
