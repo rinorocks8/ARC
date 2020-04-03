@@ -215,7 +215,8 @@
     return (number < 10 ? '0' : '') + number;
   }
 
-  const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
+  //const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
+  const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
 
   alpha.data.daily(`msft`).then(data => {
     let {
