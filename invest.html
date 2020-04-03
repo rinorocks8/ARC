@@ -227,15 +227,15 @@
       var data = ExportData();
       var d = new Date();
       document.cookie = "banking=" + JSON.stringify(data) + "; expires=Thu, 18 Dec " + (d.getFullYear() + 2) + " 12:00:00 UTC";
-      int i = 0;
+      int ff = 0;
       var $rows = $TABLE.find('tr:not(:hidden)');
       $rows.each(function () {
         var $td = $(this).find('td');
         $td.each(function () {
-          i++;//$td[3].innerHTML =  StockUpdate('msft');//StockUpdate($td[0].innerHTML);
+          ff++;//$td[3].innerHTML =  StockUpdate('msft');//StockUpdate($td[0].innerHTML);
         });
       });
-      document.getElementById('stock').innerHTML = String(i);
+      document.getElementById('stock').innerHTML = String(ff);
     }
   }
 
