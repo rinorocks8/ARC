@@ -254,6 +254,8 @@
       $td.eq(9).html(($td.eq(8).html().substr(1)/$td.eq(3).html().substr(1)*100).toFixed(2)+"%");
       //yield on cost
       $td.eq(10).html(($td.eq(8).html().substr(1)/$td.eq(2).html()*100).toFixed(2)+"%");
+      //annual income
+      $td.eq(10).html("$"+$td.eq(1).html().substr(1)*$td.eq(8).html());
     }
   }
 
