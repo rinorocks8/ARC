@@ -264,19 +264,16 @@
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
   function StockUpdate(inputsymbolraw){
-
     $.ajax({
-      url:'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt',
-      success: function (data){
-        //parse your data here
-        //you can split into lines using data.split('\n')
-        //an use regex functions to effectively parse it
-        document.getElementById('stock').innerHtml = data;
-      }
+        type:    "GET",
+        url:     "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt",
+        success: function(text) {
+            document.getElementById('stock').innerHtml = text;
+        },
+        error:   function() {
+            // An error occurred
+        }
     });
-
-
-    document.getElementById('stock').innerHtml = 'here';
 
     var inputsymbol = inputsymbolraw.toLowerCase();
     //pretend the local storage of stock prices is connected to github
