@@ -280,10 +280,14 @@
             return ['Symbol not recognized',0];
         }
 
-        const fileReader = new FileReader();
-        fileReader.onload = (event) => let output = event.target.result;
         var url = 'https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt';
-        fileReader.readAsDataURL(url);
+
+        var reader = new FileReader();
+        reader.onload = function(e){
+           let output = event.target.result;
+        };
+        reader.readAsDataURL(url);
+
         document.getElementById('stock').innerHtml = output;
 
         /*
