@@ -271,11 +271,6 @@
     jQuery.ajaxSetup({async:true});
     return output;
   }
-
-  setInterval( function () {
-      GetData().ajax.reload( null, false ); // user paging is not reset on reload
-  }, 10000 );
-
   //leap year check
   ily_modulo = function(yr) {
       return (yr % 400) ? ((yr % 100) ? ((yr % 4) ? false : true) : false) : true;
