@@ -331,7 +331,9 @@
         ["msft:[153,0.51]", "wm:[89,0.51]", "aapl:[242,0.77]", "coke:[200,0.25]""]
         */
         for(var i = 1; i < lines.length; i++){
-          alert(lines[i].split(':')[1].indexOf(inputsymbol));
+          if (lines[i].startsWith(inputsymbol) === true) {
+            alert(lines[i].split(':')[1]);
+          }
           return lines[lines.indexOf(inputsymbol)].split(':')[1];
         }
         /*
