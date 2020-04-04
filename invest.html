@@ -253,7 +253,8 @@
   }
 
   function StockDatabase() {
-
+    var lines = GetData().split('\n');
+    return lines;
   }
 
   function StockDatabaseDate() {
@@ -325,6 +326,7 @@
     //pretend the local storage of stock prices is connected to github
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
+        StockDatabase
         if (inputsymbol==='msft'){
           return [153,0.51];
         } else if (inputsymbol==='wm'){
