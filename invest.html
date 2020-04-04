@@ -260,18 +260,18 @@
       });
     });
   }
-/*
+
   function StockDatabaseDate() {
     $(function() {
       $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
-          let lines = JSON.stringify(data).split('\n');
-          if (lines[0] === date){
-            return true;
-          }
+          let dataout = data;
       });
     });
+    let lines = dataout.split('\n');
+    if (lines[0] === date){
+      return true;
+    }
   }
-*/
   var today = new Date();
   var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
 
