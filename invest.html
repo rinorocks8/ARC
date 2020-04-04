@@ -328,7 +328,7 @@
       if(true===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
         var lines = StockDatabase();
         //alert(lines[lines.indexOf(inputsymbol)].split(':')[1]);
-        alert(lines[1]);
+        alert(lines.find(inputsymbol));
         return lines[lines.find(inputsymbol)].split(':')[1];
         /*
         if (inputsymbol==='msft'){
