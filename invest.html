@@ -325,36 +325,19 @@
 
     //pretend the local storage of stock prices is connected to github
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
-      if(true===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
+      alert(StockDatabase().contains("hello"));
+      if(StockDatabase(inputsymbol).contains()===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
         var lines = StockDatabase();
-        /*
-        ["msft:[153,0.51]", "wm:[89,0.51]", "aapl:[242,0.77]", "coke:[200,0.25]""]
-        */
         for(var i = 1; i < lines.length; i++){
           if (lines[i].startsWith(inputsymbol) === true) {
-            alert(lines[i].split(':')[1]);
-          }
-          return lines[lines.indexOf(inputsymbol)].split(':')[1];
-        }
-        /*
-        if (inputsymbol==='msft'){
-          return [153,0.51];
-        } else if (inputsymbol==='wm'){
-          return [89,0.51];
-        } else if (inputsymbol==='aapl'){
-          return [242,0.77];
-        } else if (inputsymbol==='coke'){
-          return [200,0.25];
-        } else {
+            return lines[i].split(':')[1];
+          } else {
             return ['Symbol not recognized',0];
+          }
         }
-        */
-        /*
-        else {
-          return ['Symbol not recognized',0];
-        */
 
       } else { //local storage doesnt contain this stock and pull its
+        /*
         alpha.data.daily_adjusted(inputsymbol).then(data => {
           let {
             'Meta Data': {
@@ -380,6 +363,7 @@
           //add this stock to local storage
           return [open,dividend];
         });
+        */
       }
     } else { //if date is not correct
       //clear local storage and update date
