@@ -258,10 +258,10 @@
 
   function StockDatabaseDate() {
     jQuery.ajaxSetup({async:false});
-    $.get({"https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt", true});
+    $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
+      $('#stock').html(data);
+    });
     jQuery.ajaxSetup({async:true});
-
-    return jqXHR.responseText;
   }
 
 /*
