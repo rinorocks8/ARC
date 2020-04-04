@@ -285,18 +285,18 @@
   } else { //its before
     if(today.getDate() === 1){
       if (today.getMonth() === 0 || today.getMonth() === 2 || today.getMonth() === 4 || today.getMonth() === 6 || today.getMonth() === 7 || today.getMonth() === 9 || today.getMonth() === 11 ){
-        month = today.getMonth()-1;
+        month = today.getMonth();
         day = 31;
       } else if (today.getMonth() === 1) {
         if (ily_modulo(today.getFullYear())===true){
-          month = today.getMonth()-1;
+          month = today.getMonth();
           day = 29;
         } else {
-          month = today.getMonth()-1;
+          month = today.getMonth();
           day = 28;
         }
       } else {
-        month = today.getMonth()-1;
+        month = today.getMonth();
         day = 30;
       }
     }
