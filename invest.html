@@ -253,12 +253,7 @@
   }
 
   function StockDatabase() {
-    $(function() {
-      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
-          var lines = data.split('\n');
 
-      });
-    });
   }
 
   function StockDatabaseDate() {
@@ -269,7 +264,7 @@
 
   function GetData() {
     $(function() {
-      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt').done(function(data) {
+      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
           $('#stock').html(data);
       });
     });
