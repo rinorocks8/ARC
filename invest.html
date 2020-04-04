@@ -269,9 +269,7 @@
       });
     });
     var lines = dataout.split('\n');
-    if (lines[0] === date){
-      return true;
-    }
+    return lines[0];
   }
   var today = new Date();
   var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
