@@ -318,8 +318,8 @@
     var inputsymbol = inputsymbolraw.toLowerCase();
     //gets run a lot on start
     //pretend the local storage of stock prices is connected to github
-    if(this.date===StockDatabaseDate()){ //if(date is correct)
-      alert("here");
+    alert(this.date);
+    if(StockDatabaseDate()===StockDatabaseDate()){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
         if (inputsymbol==='msft'){
           return [153,0.51];
