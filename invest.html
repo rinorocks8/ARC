@@ -325,11 +325,10 @@
 
     //pretend the local storage of stock prices is connected to github
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
-      if(StockDatabase().join().includes(inputsymbol+":")===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
+      if(StockDatabase().join().includes(inputsymbol+":")===true){ //if local storage contains this stock
         var lines = StockDatabase();
         for(var i = 1; i < lines.length; i++){
           if (lines[i].startsWith(inputsymbol) === true) {
-            window.location.reload(true);
             return lines[i].split(':')[1].slice(1,-1).split(',');
           }
         }
