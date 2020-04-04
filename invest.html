@@ -257,18 +257,23 @@
   }
 
   function StockDatabaseDate() {
-
-    var lines = GetData().split('\n');
-    return JSON.stringify(document.getElementById('stock'));
+    foo(function (result) {
+      var lines = result.split('\n');
+      return lines[0];
+    });
   }
 
-  function GetData() {
-    $(function() {
-      $.ajaxSetup({async: false});
-      $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
-          return data;
-      });
-    });
+  function GetData(callback) {
+    httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState === 4) { // request is done
+            if (httpRequest.status === 200) { // successfully
+                callback(httpRequest.responseText); // we're calling our method
+            }
+        }
+    };
+    httpRequest.open('GET', "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt");
+    httpRequest.send();
   }
 
   var today = new Date();
