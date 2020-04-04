@@ -270,7 +270,7 @@
   function GetData() {
     $(function() {
       $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt').done(function(data) {
-          $( "#stock" ).html( data );
+          $('#stock').html(data);
       });
     });
   }
