@@ -71,7 +71,7 @@
             <button id="export-btn" class="btn btn-primary">Export Data</button>
             <input type="file" id="fileElem" onchange="Upload();" style="display:none">
             <button id="import-btn" class="btn btn-primary">Import Data</button>
-            <p id="stock">a</p>
+            <p hidden id="stock">a</p>
         </div>
       </div>
     </div>
@@ -262,14 +262,15 @@
   }
 
   function StockDatabaseDate() {
-    var lines = GetData().split('\n');
+    GetData();
+    var lines = .split('\n');
     return lines[0];
   }
 
   function GetData() {
     $(function() {
       $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt').done(function(data) {
-          return data;
+          $( "#stock" ).html( data );
       });
     });
   }
