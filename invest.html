@@ -327,7 +327,7 @@
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
       if(true===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
         var lines = StockDatabase();
-        alert(lines[lines.indexOf(inputsymbol)].split(':')[1]);
+        alert(lines[lines.indexOf("MSFT")].split(':')[1]);
         return lines[lines.indexOf(inputsymbol)].split(':')[1];
         /*
         if (inputsymbol==='msft'){
