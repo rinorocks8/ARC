@@ -325,8 +325,9 @@
 
     //pretend the local storage of stock prices is connected to github
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
-      if(true===true){ //if local storage contains this stock
-        StockDatabase
+      if(true===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
+        return StockDatabase[StockDatabase.indexOf(inputsymbol)].split(':')[1];
+        /*
         if (inputsymbol==='msft'){
           return [153,0.51];
         } else if (inputsymbol==='wm'){
@@ -338,7 +339,7 @@
         } else {
             return ['Symbol not recognized',0];
         }
-
+        */
         /*
         else {
           return ['Symbol not recognized',0];
