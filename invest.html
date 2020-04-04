@@ -260,7 +260,7 @@
     c = new XMLHttpRequest;
     c.open('GET', "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt", true);
     c.send();
-    return JSON.stringify(c);
+    return c.text;
   }
 
 /*
