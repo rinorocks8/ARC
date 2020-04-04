@@ -327,9 +327,10 @@
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
       if(true===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
         var lines = StockDatabase();
-        //alert(lines[lines.indexOf(inputsymbol)].split(':')[1]);
-        alert(lines.find(inputsymbol));
-        return lines[lines.find(inputsymbol)].split(':')[1];
+        for(var i = 1; i < lines.length; i++){
+          alert(lines[i].split(':')[1].indexOf(inputsymbol));
+          return lines[lines.indexOf(inputsymbol)].split(':')[1];
+        }
         /*
         if (inputsymbol==='msft'){
           return [153,0.51];
