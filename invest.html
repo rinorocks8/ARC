@@ -325,7 +325,7 @@
 
     //pretend the local storage of stock prices is connected to github
     if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
-      alert(StockDatabase().contains("hello"));
+      alert(StockDatabase().join().contains(inputsymbol+":"));
       if(StockDatabase().join().contains(inputsymbol+":")===true){ //if local storage contains this stock (StockDatabase.contains(inputsymbol)===true)
         var lines = StockDatabase();
         for(var i = 1; i < lines.length; i++){
