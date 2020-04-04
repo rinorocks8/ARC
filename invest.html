@@ -259,7 +259,7 @@
   function StockDatabaseDate() {
     GetData(function (result) {
       var lines = result.split('\n');
-      return lines[0];
+      return result;
     });
   }
 
