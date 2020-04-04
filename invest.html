@@ -271,8 +271,38 @@
     return output;
   }
 
+  //leap year check
+  ily_modulo = function(yr) {
+      return (yr % 400) ? ((yr % 100) ? ((yr % 4) ? false : true) : false) : true;
+  }
+
   var today = new Date();
-  var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
+  var month;
+  var day;
+  if(today.getHours() >= 9 && today.getMinutes() >= 30){ //if its after 9:30
+    month = today.getMonth()+1;
+    day = today.getDate();
+  } else { //its before
+    if(today.getDate() === 1){
+      if (today.getMonth() === 0 || today.getMonth() === 2 || today.getMonth() === 4 || today.getMonth() === 6 || today.getMonth() === 7 || today.getMonth() === 9 || today.getMonth() === 11 ){
+        month = today.getMonth()-1;
+        day = 31;
+      } else if (today.getMonth() === 1) {
+        if (ily_modulo(today.getFullYear())===true){
+          month = today.getMonth()-1;
+          day = 29;
+        } else {
+          month = today.getMonth()-1;
+          day = 28;
+        }
+      } else {
+        month = today.getMonth()-1;
+        day = 30;
+      }
+    }
+  }
+
+  var date = today.getFullYear()+'-'+ pad2(month) +'-'+pad2(day);
 
   function pad2(number) {
     return (number < 10 ? '0' : '') + number;
