@@ -264,7 +264,7 @@
   function StockDatabaseDate() {
     $(function() {
       $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
-          let lines = data.split('\n');
+          let lines = JSON.stringify(data).split('\n');
           if (lines[0] === date){
             return true;//hello
           }
