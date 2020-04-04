@@ -313,7 +313,6 @@
     return year +'-'+ pad2(month) +'-'+pad2(day);
   }
 
-  alert(GetDateRaw());
   //const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
   //const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
@@ -324,7 +323,7 @@
     //gets run a lot on start **important**needs fix**
 
     //pretend the local storage of stock prices is connected to github
-    if(StockDatabaseDate()===StockDatabaseDate()){ //if(date is correct)
+    if(GetDateRaw()===StockDatabaseDate()){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
         if (inputsymbol==='msft'){
           return [153,0.51];
