@@ -273,7 +273,7 @@
 */
 
   function StockDatabaseDate() {
-    $.when(ajax1()).done(function(a1){
+    $.when(ajax1()).done(function(data){
         $('#stock').html(data);
     });
     return JSON.stringify(document.getElementById('stock'));
