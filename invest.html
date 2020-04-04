@@ -255,11 +255,18 @@
   function StockDatabase() {
 
   }
+  
+  function StockDatabaseDate(c) { // URL
+    c = new XMLHttpRequest;
+    c.open('GET', "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt", true);
+    c.send();
+    return c;
+  }
 
+/*
   function StockDatabaseDate() {
     GetData(function (result) {
       var lines = result.split('\n');
-      return result;
     });
   }
 
@@ -275,6 +282,7 @@
     httpRequest.open('GET', "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt");
     httpRequest.send();
   }
+  */
 
   var today = new Date();
   var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
