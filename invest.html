@@ -270,7 +270,7 @@
     });
 
     setInterval( function () {
-        get.ajax.reload( null, false ); // user paging is not reset on reload
+        jQuery.ajax.reload( null, false ); // user paging is not reset on reload
     }, 10000 );
     jQuery.ajaxSetup({async:true});
     return output;
