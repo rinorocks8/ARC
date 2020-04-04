@@ -276,39 +276,42 @@
       return (yr % 400) ? ((yr % 100) ? ((yr % 4) ? false : true) : false) : true;
   }
 
-  var today = new Date();
-  var year = today.getFullYear();
-  var month = today.getMonth();
-  var day = today.getDate();
-  if((today.getHours() >= 9 && today.getMinutes() >= 30) || today.getHours() >= 10){ //if its after 9:30
-    month = today.getMonth()+1;
-  } else { //its before 9:30
-    if(today.getDate() === 1){
-      if (today.getMonth() === 3 || today.getMonth() === 5 || today.getMonth() === 7 || today.getMonth() === 8 || today.getMonth() === 10 || today.getMonth() === 12 ){
-        day = 31;
-      } else if (today.getMonth() === 2) {
-        if (ily_modulo(today.getFullYear())===true){
-          day = 29;
-        } else {
-          day = 28;
-        }
-      } else if (today.getMonth() === 0){//fineokay11111
-        year = today.getFullYear()-1;
-        month = 12;
-        day = 31;
-      } else {
-        day = 30;
-      }
-    } else {
+  function GetDateRaw() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth();
+    var day = today.getDate();
+    if((today.getHours() >= 9 && today.getMinutes() >= 30) || today.getHours() >= 10){ //if its after 9:30
       month = today.getMonth()+1;
+    } else { //its before 9:30
+      if(today.getDate() === 1){
+        if (today.getMonth() === 3 || today.getMonth() === 5 || today.getMonth() === 7 || today.getMonth() === 8 || today.getMonth() === 10 || today.getMonth() === 12 ){
+          day = 31;
+        } else if (today.getMonth() === 2) {
+          if (ily_modulo(today.getFullYear())===true){
+            day = 29;
+          } else {
+            day = 28;
+          }
+        } else if (today.getMonth() === 0){//fineokay11111
+          year = today.getFullYear()-1;
+          month = 12;
+          day = 31;
+        } else {
+          day = 30;
+        }
+      } else {
+        month = today.getMonth()+1;
+      }
     }
+
+    function pad2(number) {
+      return (number < 10 ? '0' : '') + number;
+    }
+
+    return year +'-'+ pad2(month) +'-'+pad2(day);
   }
 
-  var date = year +'-'+ pad2(month) +'-'+pad2(day);
-
-  function pad2(number) {
-    return (number < 10 ? '0' : '') + number;
-  }
 
   //const alpha = alphavantage({ key: 'W1Z6SQHCCW116IP2' });
   //const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
@@ -318,7 +321,7 @@
     var inputsymbol = inputsymbolraw.toLowerCase();
     //gets run a lot on start
     //pretend the local storage of stock prices is connected to github
-    alert(window.date+' '+StockDatabaseDate());
+    alert(GetDateRaw()+' '+StockDatabaseDate());
     if(StockDatabaseDate()===StockDatabaseDate()){ //if(date is correct)
       if(true===true){ //if local storage contains this stock
         if (inputsymbol==='msft'){
@@ -349,7 +352,7 @@
               '5. Time Zone':timezone
             },
             'Time Series (Daily)': {
-              [date]: {
+              [GetDateRaw()]: {
                 '1. open':open,
                 '2. high':high,
                 '3. low':low,
