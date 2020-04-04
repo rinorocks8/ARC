@@ -329,7 +329,7 @@
         var lines = StockDatabase();
         //alert(lines[lines.indexOf(inputsymbol)].split(':')[1]);
         alert(lines[1]);
-        return lines[lines.indexOf(inputsymbol)].split(':')[1];
+        return lines[lines.find(inputsymbol)].split(':')[1];
         /*
         if (inputsymbol==='msft'){
           return [153,0.51];
