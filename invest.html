@@ -314,11 +314,11 @@
   //const alpha = alphavantage({ key: 'Q544GKT1P2P9XKF0' });
   const alpha = alphavantage({ key: 'VLKRMYV7C65GQZ8R' });
 
+  alert(date);
   function StockUpdate(inputsymbolraw){
     var inputsymbol = inputsymbolraw.toLowerCase();
     //gets run a lot on start
     //pretend the local storage of stock prices is connected to github
-    alert(date);
     if(StockDatabaseDate()===StockDatabaseDate()){ //if(date is correct)
       alert("working");
       if(true===true){ //if local storage contains this stock
