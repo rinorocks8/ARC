@@ -304,7 +304,7 @@
     }
   }
 
-  var date = year +'-'+ (month) +'-'+(day);
+  var date = year +'-'+ pad2(month) +'-'+pad2(day);
 
   function pad2(number) {
     return (number < 10 ? '0' : '') + number;
