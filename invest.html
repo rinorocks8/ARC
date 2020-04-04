@@ -284,7 +284,7 @@
     day = today.getDate();
   } else { //its before
     if(today.getDate() === 1){
-      if (today.getMonth() === 1 || today.getMonth() === 3 || today.getMonth() === 5 || today.getMonth() === 7 || today.getMonth() === 8 || today.getMonth() === 10 || today.getMonth() === 0 ){
+      if (today.getMonth() === 4 || today.getMonth() === 6 || today.getMonth() === 7 || today.getMonth() === 9 || today.getMonth() === 11 ){
         month = today.getMonth();
         day = 31;
       } else if (today.getMonth() === 2) {
@@ -295,6 +295,9 @@
           month = today.getMonth();
           day = 28;
         }
+      else if (today.getMonth() === 0){
+        month = 12;
+        day = 31;
       } else {
         month = today.getMonth();
         day = 30;
