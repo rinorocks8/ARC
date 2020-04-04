@@ -258,8 +258,8 @@
 
   function StockDatabaseDate() {
     GetData();
-    var lines = JSON.stringify(document.getElementById('stock')).split('\n');
-    return lines[0];
+    //var lines = .split('\n');
+    return JSON.stringify(document.getElementById('stock'));
   }
 
   function GetData() {
