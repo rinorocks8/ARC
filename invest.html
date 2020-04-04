@@ -257,6 +257,11 @@
   }
 
   function StockDatabaseDate() {
+    var lines = result.split('\n');
+    return lines[0];
+  }
+
+  function GetData(){
     var output;
     jQuery.ajaxSetup({async:false});
     $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
@@ -265,27 +270,6 @@
     jQuery.ajaxSetup({async:true});
     return output;
   }
-
-/*
-  function StockDatabaseDate() {
-    GetData(function (result) {
-      var lines = result.split('\n');
-    });
-  }
-
-  function GetData(callback) {
-    httpRequest = new XMLHttpRequest();
-    httpRequest.onreadystatechange = function () {
-        if (httpRequest.readyState === 4) { // request is done
-            if (httpRequest.status === 200) { // successfully
-                callback(httpRequest.responseText); // we're calling our method
-            }
-        }
-    };
-    httpRequest.open('GET', "https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt");
-    httpRequest.send();
-  }
-  */
 
   var today = new Date();
   var date = today.getFullYear()+'-'+ pad2(today.getMonth()+1) +'-'+pad2(today.getDate()-1);
