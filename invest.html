@@ -265,13 +265,13 @@
   function GetData(){
     var output;
     jQuery.ajaxSetup({async:false});
-    setInterval( function () {
-        table.ajax.reload( null, false ); // user paging is not reset on reload
-    }, 10000 );
-
     $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
       output = data;
     });
+
+    setInterval( function () {
+        get.ajax.reload( null, false ); // user paging is not reset on reload
+    }, 10000 );
     jQuery.ajaxSetup({async:true});
     return output;
   }
