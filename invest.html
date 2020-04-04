@@ -255,7 +255,7 @@
   function StockDatabase() {
 
   }
-
+/*
   function StockDatabaseDate() {
     GetData();
     //var lines = .split('\n');
@@ -269,6 +269,20 @@
           $('#stock').html(data);
       });
     });
+  }
+*/
+
+  function StockDatabaseDate() {
+    $.when(ajax1()).done(function(a1){
+        $('#stock').html(data);
+    });
+    return JSON.stringify(document.getElementById('stock'));
+  }
+
+
+  function ajax1() {
+      return $.get('https://raw.githubusercontent.com/rinorocks8/rinorocks8.github.io/master/pulledstocks.txt', function(data) {
+      });
   }
 
   var today = new Date();
