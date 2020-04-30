@@ -174,13 +174,13 @@ include("auth.html");
             )");
             $con->query("INSERT INTO `$username`.`todo` (content) VALUES ('')");
           }
-            $sql_query = "SELECT content FROM `todo`";
-            $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
-            while( $developer = mysqli_fetch_assoc($resultset) ) {
-            ?>
-            <p><?php echo $developer ['content']; ?></p>
-            <?php }
-          } ?>
+          $sql_query = "SELECT content FROM `todo`";
+          $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
+          while( $developer = mysqli_fetch_assoc($resultset) ) {
+          ?>
+          <p><?php echo $developer ['content']; ?></p>
+          <?php }
+          ?>
         </div>
       </div>
     </div>
