@@ -64,12 +64,6 @@ include("auth.html");
 <script type="text/javascript">
 
   function CellChange(a,b,c) {
-    var datesend;
-    if(urlParams.get("sel")=== null){
-      datesend = date;
-    } else {
-      datesend = urlParams.get("sel");
-    }
     $.ajax({
       method: "POST",
       url: "live_edit.php",
@@ -78,7 +72,7 @@ include("auth.html");
         b: b,  //column title
         c: c,  //data
         d: 'change',
-        e: datesend
+        e: 'todo'
       }
     });
   }
