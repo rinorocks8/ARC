@@ -88,13 +88,14 @@ include("auth.html");
     style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize + increaseFactor) + 'px';
+
     $.ajax({
       method: "POST",
       url: "live_edit.php",
       data: {
         a: '1',  //row
         b: 'style',  //column title
-        c: 'font-size: ' + (currentSize + increaseFactor) + 'px',  //data
+        c: String('font-size: ' + (currentSize + increaseFactor) + 'px'),  //data
         d: 'style',
         e: 'todo'
     }
