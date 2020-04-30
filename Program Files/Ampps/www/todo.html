@@ -50,7 +50,7 @@ include("auth.html");
             )");
             $con->query("INSERT INTO `$username`.`todo` (id, content) VALUES (NULL, '')");
           }
-          $sql_query = "SELECT 'content' FROM `todo`";
+          $sql_query = "SELECT content FROM `todo`";
           $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
           while( $developer = mysqli_fetch_assoc($resultset) ) {
           ?>
