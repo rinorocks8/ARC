@@ -35,7 +35,7 @@ include("auth.html");
         <div class="investbox">
           <h1 style="color: #595959; font: bold 36pt Tahoma,'Segoe UI',Calibri,Thonburi,Arial,Verdana,Sans-Serif,'Mongolian Baiti','Microsoft Yi Baiti','Javanese Text';  background-color:white; margin: 0px; line-height: 80px;" class="Table">To-Do</h1>
           <div id="table" class="table-editable" style="height:100%; !important;">
-            <table id="tableactual" class="table table-bordered" style="height:100%; !important;">
+            <table id="tableactual" class="table table-bordered">
               <thead>
                 <tr>
                   <th class="tableheader">Buttons</th>
@@ -62,7 +62,7 @@ include("auth.html");
                 $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
                 while( $developer = mysqli_fetch_assoc($resultset) ) {
                 ?>
-                <tr style="height:100%; !important;">
+                <tr >
                   <td style="background-color: #DBDBDB; border: 0px !important;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
                     <?php echo $developer ['content']; ?>
                   </td>
