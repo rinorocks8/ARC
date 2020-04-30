@@ -52,7 +52,9 @@ include("auth.html");
           $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
           while( $developer = mysqli_fetch_assoc($resultset) ) {
           ?>
-          <p><?php echo $developer ['content']; ?></p>
+          <p contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
+            <?php echo $developer ['content']; ?>
+          </p>
           <?php }
           ?>
         </div>
@@ -63,7 +65,7 @@ include("auth.html");
 
 <script type="text/javascript">
 
-  function CellChange(a,b,c) {
+  function CellChange(a) {
     $.ajax({
       method: "POST",
       url: "live_edit.php",
