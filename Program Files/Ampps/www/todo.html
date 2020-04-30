@@ -41,7 +41,7 @@ include("auth.html");
                   <th class="tableheader">Buttons</th>
                 </tr>
               </thead>
-              <tbody style="height:100%; !important;">
+              <tbody>
                 <?php
                 $username = $_SESSION['username'];
 
@@ -62,7 +62,7 @@ include("auth.html");
                 $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
                 while( $developer = mysqli_fetch_assoc($resultset) ) {
                 ?>
-                <tr style="height:100%; !important;">
+                <tr style="height:300px; !important;">
                   <td style="background-color: #DBDBDB; border-right: 0px !important;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
                     <?php echo $developer ['content']; ?>
                   </td>
