@@ -85,7 +85,7 @@ include("auth.html");
     txt = document.getElementById('todo');
     style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
     currentSize = parseFloat(style);
-    txt.style.fontSize = (currentSize + increaseFactor) + 'px !important';
+    txt.style.fontSize = (currentSize + increaseFactor) + 'px';
   }
 
   function CellChange(a) {
