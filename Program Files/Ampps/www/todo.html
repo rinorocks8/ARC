@@ -38,7 +38,7 @@ include("auth.html");
             <table id="tableactual" class="table table-bordered" style="height:100%; !important;">
               <thead>
                 <tr>
-                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="alert('clicked');">Insert •</th>
+                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="$('#tableactual').style.cssText  += '• ';">Insert •</th>
                 </tr>
               </thead>
               <tbody>
@@ -63,7 +63,7 @@ include("auth.html");
                 while( $developer = mysqli_fetch_assoc($resultset) ) {
                 ?>
                 <tr>
-                  <td style="background-color: #DBDBDB; border: 0px !important; padding: 10px !important;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
+                  <td style="background-color: #DBDBDB; border: 0px !important; padding: 10px !important;" id='todo' contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
                     <?php echo $developer ['content']; ?>
                   </td>
                 </tr>
