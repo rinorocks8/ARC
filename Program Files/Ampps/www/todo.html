@@ -42,33 +42,33 @@ include("auth.html");
                 </tr>
               </thead>
               <tbody>
-          <?php
-          $username = $_SESSION['username'];
+                <?php
+                $username = $_SESSION['username'];
 
-          $con = mysqli_connect("localhost","root","mysql","$username");
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          if (!$result = $con->query("DESCRIBE `todo`") ) {
-            $con->query("CREATE TABLE `$username`.`todo` (
-            id INT NOT NULL AUTO_INCREMENT,
-              content TEXT,
-              PRIMARY KEY (id)
-            )");
-            $con->query("INSERT INTO `$username`.`todo` (id, content) VALUES (NULL, '')");
-          }
-          $sql_query = "SELECT content FROM `todo`";
-          $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
-          while( $developer = mysqli_fetch_assoc($resultset) ) {
-          ?>
-          <tr>
-            <td style="background-color: #DBDBDB; height:100%;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
-              <?php echo $developer ['content']; ?>
-            </td>
-          </tr>
-          <?php }
-          ?>
+                $con = mysqli_connect("localhost","root","mysql","$username");
+                if (mysqli_connect_errno())
+                {
+                  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                }
+                if (!$result = $con->query("DESCRIBE `todo`") ) {
+                  $con->query("CREATE TABLE `$username`.`todo` (
+                  id INT NOT NULL AUTO_INCREMENT,
+                    content TEXT,
+                    PRIMARY KEY (id)
+                  )");
+                  $con->query("INSERT INTO `$username`.`todo` (id, content) VALUES (NULL, '')");
+                }
+                $sql_query = "SELECT content FROM `todo`";
+                $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
+                while( $developer = mysqli_fetch_assoc($resultset) ) {
+                ?>
+                <tr>
+                  <td style="background-color: #DBDBDB; height:100%;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
+                    <?php echo $developer ['content']; ?>
+                  </td>
+                </tr>
+                <?php }
+                ?>
               </tbody>
             </table>
           </div>
