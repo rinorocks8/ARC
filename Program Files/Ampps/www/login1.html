@@ -19,12 +19,49 @@
         <a href="index.html" class="menufont">This Week</a>
         <a href="weekselector.html" class="menufont" style="display:none !important;">Select Week [Not Implemented Yet]</a>
         <a href="todo.html" class="menufont">To-Do</a>
-        <div style="bottom: 80px; position: absolute; left: 35px; font-family:'Arial Black', Gadget, sans-serif;">Not Logged In</div>
+        <div style="bottom: 80px; position: absolute; left: 30px; font-family:'Arial Black', Gadget, sans-serif;">Not Logged In</div>
     </div>
     <div class="body">
       <div class="invest">
         <div class="investbox">
-
+          <?php
+          require('db.html');
+          session_start();
+          // If form submitted, insert values into the database.
+          if (isset($_POST['username'])){
+                  // removes backslashes
+           $username = stripslashes($_REQUEST['username']);
+                  //escapes special characters in a string
+           $username = mysqli_real_escape_string($con,$username);
+           $password = stripslashes($_REQUEST['password']);
+           $password = mysqli_real_escape_string($con,$password);
+           //Checking is user existing in the database or not
+                  $query = "SELECT * FROM `users` WHERE username='$username'
+          and password='".md5($password)."'";
+           $result = mysqli_query($con,$query) or die(mysql_error());
+           $rows = mysqli_num_rows($result);
+                  if($rows==1){
+               $_SESSION['username'] = $username;
+                      // Redirect user to index.html
+               header("Location: /");
+                   }else{
+           echo "<div class='form'>
+          <h3>Username/password is incorrect.</h3>
+          <br/>Click here to <a href='login.html'>Login</a></div>";
+           }
+              }else{
+          ?>
+          <div class="form">
+          <h1>Log In</h1>
+          <p>Accounts are required to save data</p>
+          <form action="" method="post" name="login">
+          <input type="text" name="username" placeholder="Username" required />
+          <input type="password" name="password" placeholder="Password" required />
+          <input name="submit" type="submit" value="Login" />
+          </form>
+          <p>Not registered yet? <a href='registration.html'>Register Here</a></p>
+          </div>
+          <?php } ?>
         </div>
       </div>
     </div>
