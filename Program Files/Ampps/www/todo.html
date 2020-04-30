@@ -14,8 +14,8 @@ include("auth.html");
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-      function increaseFontSize(id, increaseFactor){
-           txt = document.getElementById(id);
+      function increaseFontSize(increaseFactor){
+           txt = document.getElementById('todo');
            style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
            currentSize = parseFloat(style);
            txt.style.fontSize = (currentSize + increaseFactor) + 'px';
@@ -45,7 +45,7 @@ include("auth.html");
               <thead>
                 <tr>
                   <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="document.getElementById('todo').textContent  += ' • ';">Insert •</th>
-                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="document.getElementById('todo').textContent  += ' • ';">Insert •</th>
+                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="increaseFontSize(10);">Insert •</th>
                 </tr>
               </thead>
               <tbody>
