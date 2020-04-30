@@ -160,7 +160,63 @@ include("auth.html");
       <div class="invest">
         <div class="investbox">
           <h1 id="tablename" style="color: #595959; font: bold 36pt Tahoma,'Segoe UI',Calibri,Thonburi,Arial,Verdana,Sans-Serif,'Mongolian Baiti','Microsoft Yi Baiti','Javanese Text';  background-color:white; margin: 0px; line-height: 80px;" class="Table">Schedule</h1>
-          <p><?php echo $developer ['todo']; ?></p>
+          <?php
+          $week = $_COOKIE["getTime"];
+          if ($_GET["sel"] !== null){
+            $week = $_GET["sel"];
+          }
+          $username = $_SESSION['username'];
+
+          $con = mysqli_connect("localhost","root","mysql","$username");
+          if (mysqli_connect_errno())
+          {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+          }
+          if (!$result = $con->query("DESCRIBE `$week`") ) {
+            $copy = $_COOKIE["copy"];
+            $last = $_COOKIE["last"];
+            if($copy==="true"){
+              $con->query("CREATE TABLE `$week` LIKE `$last`");
+              $con->query("INSERT INTO `$week` SELECT * FROM `$last`");
+              $con->query("ALTER TABLE `$week` DROP COLUMN monday, DROP COLUMN tuesday, DROP COLUMN wednesday, DROP COLUMN thursday, DROP COLUMN friday, DROP COLUMN notes, DROP COLUMN s1, DROP COLUMN s2, DROP COLUMN s3, DROP COLUMN s4, DROP COLUMN s5, DROP COLUMN s6, DROP COLUMN s7, DROP COLUMN s8;");
+              $con->query("ALTER TABLE `$week` ADD (monday TEXT, tuesday TEXT, wednesday TEXT, thursday TEXT, friday TEXT, notes TEXT, s1 TEXT, s2 TEXT, s3 TEXT, s4 TEXT, s5 TEXT, s6 TEXT, s7 TEXT, s8 TEXT)");
+            } else {
+              $con->query("CREATE TABLE `$username`.`$week` (
+                id INT NOT NULL AUTO_INCREMENT,
+                class TEXT,
+                time TEXT,
+                monday TEXT,
+                tuesday TEXT,
+                wednesday TEXT,
+                thursday TEXT,
+                friday TEXT,
+                notes TEXT,
+                s1 TEXT,
+                s2 TEXT,
+                s3 TEXT,
+                s4 TEXT,
+                s5 TEXT,
+                s6 TEXT,
+                s7 TEXT,
+                s8 TEXT,
+                PRIMARY KEY (id)
+              )");
+              $con->query("INSERT INTO `$username`.`$week` (id, class, time, monday, tuesday, wednesday, thursday, friday, notes, s1, s2, s3, s4, s5, s6, s7, s8) VALUES (NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')");
+            }
+
+          }
+          $rowcountquery = "SELECT * FROM `$week`";
+          $rowcountresult = mysqli_query($con, $rowcountquery);
+          $rowcount = mysqli_num_rows($rowcountresult);
+          for ($x = 0; $x < $rowcount; $x++) {
+            $srow = 's'.$x;
+            $sql_query = "SELECT id, class, time, monday, tuesday, wednesday, thursday, friday, notes, s1, s2, s3, s4, s5, s6, s7, s8 FROM `$week` LIMIT $x,1";
+            $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
+            while( $developer = mysqli_fetch_assoc($resultset) ) {
+            ?>
+            <p><?php echo $developer ['friday']; ?></p>
+            <?php }
+          } ?>
         </div>
       </div>
     </div>
