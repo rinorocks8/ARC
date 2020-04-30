@@ -84,7 +84,6 @@ include("auth.html");
   function increaseFontSize(increaseFactor) {
     txt = document.getElementById('todo');
     style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
-    alert(style);
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize + increaseFactor) + 'px !important';
   }
