@@ -62,16 +62,13 @@ include("auth.html");
           $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
           while( $developer = mysqli_fetch_assoc($resultset) ) {
           ?>
-          <p style="background-color: #DBDBDB; height:100%;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
-            <?php echo $developer ['content']; ?>
-          </p>
+          <tr>
+            <td style="background-color: #DBDBDB; height:100%;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
+              <?php echo $developer ['content']; ?>
+            </td>
+          </tr>
           <?php }
           ?>
-                <tr style="height: 70px; vertical-align: middle;" class="hide" id="-1">
-                  <td style="background-color: #DBDBDB; height:100%;" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
-                    <?php echo $developer ['content']; ?>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
