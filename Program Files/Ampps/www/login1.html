@@ -29,51 +29,6 @@
     <div class="body">
       <div class="invest">
         <div class="investbox">
-          <h1 style="color: #595959; font: bold 36pt Tahoma,'Segoe UI',Calibri,Thonburi,Arial,Verdana,Sans-Serif,'Mongolian Baiti','Microsoft Yi Baiti','Javanese Text';  background-color:white; margin: 0px; line-height: 80px;" class="Table">To-Do</h1>
-          <div id="table" class="table-editable" style="height:100%; !important;">
-            <table id="tableactual" class="table table-bordered" style="height:100%; !important;">
-              <thead>
-                <tr>
-                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" width="60px" onclick="document.getElementById('todo').textContent  += ' • ';">Insert •</th>
-                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" width="30px" onclick="increaseFontSize(2);">A+</th>
-                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" width="30px" onclick="increaseFontSize(-2);">A-</th>
-                  <th class="tableheader" style="height:40px; padding-left: 10px !important;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $username = $_SESSION['username'];
-
-                $con = mysqli_connect("localhost","root","mysql","$username");
-                if (mysqli_connect_errno())
-                {
-                  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                }
-                if (!$result = $con->query("DESCRIBE `todo`") ) {
-                  $con->query("CREATE TABLE `$username`.`todo` (
-                  id INT NOT NULL AUTO_INCREMENT,
-                    content TEXT,
-                    style TEXT,
-                    PRIMARY KEY (id)
-                  )");
-                  $con->query("INSERT INTO `$username`.`todo` (id, content) VALUES (NULL, '', '')");
-                }
-                $sql_query = "SELECT * FROM `todo`";
-                $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
-                while( $developer = mysqli_fetch_assoc($resultset) ) {
-                ?>
-                <tr style="width:100% !important;"">
-                  <td colspan="4" style="border: 0px !important;" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
-                    <div style="outline: none !important; height: 100%; background-color: #DBDBDB; padding: 10px !important; font-size: 14px; <?php echo $developer ['style']; ?>" id="todo" contenteditable="true">
-                      <?php echo $developer ['content']; ?>
-                    </div>
-                  </td>
-                </tr>
-                <?php }
-                ?>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
     </div>
