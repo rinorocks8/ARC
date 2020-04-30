@@ -14,6 +14,12 @@ include("auth.html");
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
+      function increaseFontSize(id, increaseFactor){
+           txt = document.getElementById(id);
+           style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
+           currentSize = parseFloat(style);
+           txt.style.fontSize = (currentSize + increaseFactor) + 'px';
+      }
     </script>
   </head>
   <div class="main">
@@ -38,6 +44,7 @@ include("auth.html");
             <table id="tableactual" class="table table-bordered" style="height:100%; !important;">
               <thead>
                 <tr>
+                  <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="document.getElementById('todo').textContent  += ' • ';">Insert •</th>
                   <th class="tableheader" style="height:40px; padding-left: 10px !important;" onclick="document.getElementById('todo').textContent  += ' • ';">Insert •</th>
                 </tr>
               </thead>
