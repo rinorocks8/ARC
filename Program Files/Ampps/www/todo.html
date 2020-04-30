@@ -13,14 +13,6 @@ include("auth.html");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-      function increaseFontSize(increaseFactor) {
-           txt = document.getElementById('todo');
-           style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
-           currentSize = parseFloat(style);
-           txt.style.fontSize = (currentSize + increaseFactor) + 'px';
-      }
-    </script>
   </head>
   <div class="main">
     <div class= "menu">
@@ -89,6 +81,12 @@ include("auth.html");
 </html>
 
 <script type="text/javascript">
+  function increaseFontSize(increaseFactor) {
+    txt = document.getElementById('todo');
+    style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
+    currentSize = parseFloat(style);
+    txt.style.fontSize = (currentSize + increaseFactor) + 'px';
+  }
 
   function CellChange(a) {
     $.ajax({
