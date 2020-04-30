@@ -214,7 +214,7 @@ include("auth.html");
             $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($con));
             while( $developer = mysqli_fetch_assoc($resultset) ) {
             ?>
-            <p><?php echo $developer ['friday']; ?></p>
+            <p><?php echo $developer ['content']; ?></p>
             <?php }
           } ?>
         </div>
