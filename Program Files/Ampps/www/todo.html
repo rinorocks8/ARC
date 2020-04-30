@@ -44,7 +44,9 @@ include("auth.html");
           }
           if (!$result = $con->query("DESCRIBE `todo`") ) {
             $con->query("CREATE TABLE `$username`.`todo` (
-              content TEXT
+            id INT NOT NULL AUTO_INCREMENT,
+              content TEXT,
+              PRIMARY KEY (id)
             )");
             $con->query("INSERT INTO `$username`.`todo` (content) VALUES ('')");
           }
