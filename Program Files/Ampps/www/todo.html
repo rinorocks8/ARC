@@ -65,8 +65,10 @@ include("auth.html");
                 while( $developer = mysqli_fetch_assoc($resultset) ) {
                 ?>
                 <tr style="width:100% !important;"">
-                  <td colspan="4" style="background-color: #DBDBDB; border: 0px !important;  padding: 10px !important; font-size: 10px;" id="todo" contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
-                    <?php echo $developer ['content']; ?>
+                  <td colspan="4" style="background-color: #DBDBDB; border: 0px !important;  padding: 10px !important; contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
+                    <div style="font-size: 10px;" id="todo">
+                      <?php echo $developer ['content']; ?>
+                    </div>
                   </td>
                 </tr>
                 <?php }
