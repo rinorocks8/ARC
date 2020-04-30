@@ -65,7 +65,7 @@ include("auth.html");
                 while( $developer = mysqli_fetch_assoc($resultset) ) {
                 ?>
                 <tr style="width:100% !important;">
-                  <td colspan="4" style="background-color: #DBDBDB; border: 0px !important; padding: 10px !important; <?php echo $developer ['style']; ?>" id='todo' contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
+                  <td colspan="4" style="background-color: #DBDBDB; border: 0px !important; font-size: 10px !important; padding: 10px !important; <?php echo $developer ['style']; ?>" id='todo' contenteditable="true" onkeyup="CellChange(this.innerHTML);" onpaste="CellChange(this.innerHTML);">
                     <?php echo $developer ['content']; ?>
                   </td>
                 </tr>
@@ -85,7 +85,7 @@ include("auth.html");
     txt = document.getElementById('todo');
     style = window.getComputedStyle(txt, null).getPropertyValue('font-size');
     currentSize = parseFloat(style);
-    txt.style.fontSize = (currentSize + increaseFactor) + 'px !important';
+    txt.style.fontSize = (currentSize + increaseFactor) + 'px';
   }
 
   function CellChange(a) {
