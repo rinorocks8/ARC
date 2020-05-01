@@ -1,19 +1,9 @@
-body.login {
-     font-family:Arial, Sans-Serif;
-}
 .clearfix:before, .clearfix:after{
      content: "";
      display: table;
 }
 .clearfix:after{
      clear: both;
-}
-a.login{
-     color:#0067ab;
-     text-decoration:none;
-}
-a.login:hover{
-     text-decoration:underline;
 }
 .form{
      width: 300px;
