@@ -35,7 +35,11 @@ input[type='submit']:hover {
      background-color: #024978;
 }
 
-dimmed {
+.dimmed {
+  position: relative;
+}
+
+.dimmed:before {
   content: " ";
   z-index: 10;
   display: block;
