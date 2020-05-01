@@ -35,7 +35,7 @@ input[type='submit']:hover {
      background-color: #024978;
 }
 
-.dimmed:after {
+dimmed {
   content: " ";
   z-index: 10;
   display: block;
