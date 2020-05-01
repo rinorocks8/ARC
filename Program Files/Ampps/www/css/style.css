@@ -1,4 +1,4 @@
-body {
+body.login {
      font-family:Arial, Sans-Serif;
 }
 .clearfix:before, .clearfix:after{
@@ -8,11 +8,11 @@ body {
 .clearfix:after{
      clear: both;
 }
-a{
+a.login{
      color:#0067ab;
      text-decoration:none;
 }
-a:hover{
+a.login:hover{
      text-decoration:underline;
 }
 .form{
