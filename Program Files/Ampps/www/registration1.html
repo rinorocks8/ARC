@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>7days</title>
+    <title>7days- Registration</title>
     <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" />
@@ -11,6 +11,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // Creating a cookie after the document is ready
+
+      Date.prototype.addDays = function(days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+      }
+
+      var date0 = new Date;
+      var date1;
+      if(date0.getDay() === 0){
+        date1 = date0.addDays(1);
+      } else if(date0.getDay() === 1){
+        date1 = date0;
+      } else if(date0.getDay() === 2){
+        date1 = date0.addDays(-1);
+      } else if(date0.getDay() === 3){
+        date1 = date0.addDays(-2);
+      } else if(date0.getDay() === 4){
+        date1 = date0.addDays(-3);
+      } else if(date0.getDay() === 5){
+        date1 = date0.addDays(-4);
+      } else if(date0.getDay() === 6){
+        date1 = date0.addDays(-5);
+      }
+      //sets date to monday of that week
+
+      var date = date1.getMonth()+1 + "/" + date1.getDate() + "/" + date1.getFullYear();
+
+      if (getCookie("getTime")==="") {
+        createCookie("getTime", date, "1");
+        location.reload();
+      }
+      // Function to create the cookie
+      function createCookie(name, value, days) {
+        var expires;
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toGMTString();
+        }
+        else {
+          expires = "";
+        }
+        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+      }
+      function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+    </script>
   </head>
   <div class="main">
     <div class= "menu">
