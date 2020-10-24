@@ -5,76 +5,63 @@
     <title>ARC</title>
   </head>
   <div class="main">
-    <div class= "menu">
-        <a href="about.html">
-            <canvas id="logo" width="160" height="60">
-                Your browser does not support the HTML5 canvas tag.</canvas>
-        </a>
-        <br>
-        <a href="invest.html" class="menufont">Investments</a>
-        <a href="index.html" class="menufont">Banking</a></li>
+    <div class="menu">
+      <a href="about.html">
+        <canvas id="logo" width="160" height="60">
+           Your browser does not support the HTML5 canvas tag.</canvas>
+      </a>
+      <br>
+      <a href="invest.html" class="menufont">Investments</a>
+      <a href="index.html" class="menufont">Banking</a></li> 
     </div>
     <div class="body">
       <!-- This is for the modal file requester-->
-        <div id="id01" class="w3-modal">
-          <div class="w3-modal-content w3-animate-top w3-card-4">
-            <header class="w3-container modal-color">
-              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-              <h2>Upload File</h2>
-            </header>
-            <div class="w3-container">
-              <p>Input Types: .CSC, .TXT</p>
-              <p><input type="file" id="fileUpload" onchange="Upload(); document.getElementById('id01').style.display='none';"></p>
-            </div>
-            <footer class="w3-container modal-color">
-              <p></p>
-            </footer>
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top w3-card-4">
+          <header class="w3-container modal-color">
+              span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <h2>Upload File</h2>
+          </header>
+          <div class="w3-container">
+            <p>Input Types: .CSC, .TXT</p>
+            <p><input type="file" id="fileUpload" onchange="Upload(); document.getElementById('id01').style.display='none';"></p>
           </div>
+          <footer class="w3-container modal-color">
+            <p></p>
+          </footer>
         </div>
-
-      <div class="split-top">
-        <div class="column-left">
-          <div class="box"></div>
-        </div>
-        <div class="column-center">
-          <div class="box"></div>
-        </div>
-        <div class="column-right">
-          <div class="box">
-            <div class="title">
-              Purchases
+      </div>
+      <!-- End of modal file requester-->
+      <div class="vertical-split">
+        <div class="box-1 column-left"></div>
+        <div class="box-1 column-center"></div>
+        <div class="box-1 column-right">
+          <div class="title">
+            Purchases
+          </div>
+          <div class="container">
+            <div class="table">
+                <div id="dvpurchases"></div>
             </div>
-            <div class="container">
-              <div class="table">
-                  <div id="dvpurchases"></div>
-              </div>
-            </div>
-            <div class="tablesum">
-              <div id="dvpurchasesum"></div>
-            </div>
+          </div>
+          <div class="tablesum">
+            <div id="dvpurchasesum"></div>
           </div>
         </div>
       </div>
-      <div class="split-bottom">
-        <div class="column-left">
-          <div class="box"></div>
-        </div>
-        <div class="column-center">
-          <div class="box"></div>
-        </div>
-        <div class="column-right">
-          <div class="box">
-            <div class="title">
-              Deposits
+      <div class="vertical-split">
+        <div class="box-2 column-left"></div>
+        <div class="box-1 column-right">
+          <div class="title">
+            Deposits
+          </div>
+          <div class="container">
+            <div class="table">
+              <div id="dvdeposit"></div>
             </div>
-            <div class="container">
-              <div class="table">
-                <div id="dvdeposit"></div>
-              </div>
-            </div>
-            <div class="tablesum">
-              <div id="dvdepositsum"></div>
-            </div>
+          </div>
+          <div class="tablesum">
+            <div id="dvdepositsum"></div>
           </div>
         </div>
       </div>
