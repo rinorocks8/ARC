@@ -175,7 +175,7 @@
                 //category
                 var cell = row.insertCell(-1);
                 cell.contentEditable = "true";
-                cell.setAttribute("onblur", "hashUpdate($(this).closest('tr').index()); oldCellValue = this.innerText;");
+                cell.setAttribute("oninput", "hashUpdate($(this).closest('tr').index()); oldCellValue = this.innerText;");
                 cell.setAttribute("onclick", "oldCellValue = this.innerText;");
                 cell.setAttribute("onkeydown", "javascript:if(event.keyCode == 13) blur();")
                 //loads category from HashMap
@@ -307,9 +307,9 @@
     summaryUpdate();
 
     //purchases update
-    for (i = 1; i < Purchases.rows.length; i++) {
-      if(Purchases.rows[i].cells[2].innerHTML == company){
-        Purchases.rows[i].cells[0].innerHTML = category;
+    for (x = 1; x < Purchases.rows.length; x++) {
+      if(Purchases.rows[x].cells[2].innerHTML == company && x != changedIndex){
+        Purchases.rows[x].cells[0].innerHTML = category;
       }
     }
     
