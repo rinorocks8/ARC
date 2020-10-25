@@ -178,6 +178,7 @@
                 cell.setAttribute("oninput", "hashUpdate($(this).closest('tr').index()); oldCellValue = this.innerText;");
                 cell.setAttribute("onclick", "oldCellValue = this.innerText;");
                 cell.setAttribute("onkeydown", "javascript:if(event.keyCode == 13) blur();")
+                cell.setAttribute("onpaste", "handlepaste(this, event)");
                 //loads category from HashMap
                 for (category of tsummaryHash){
                   if(category[1][1].includes(cells[4].substring(29, end))){
@@ -294,11 +295,15 @@
 
         //category was removed from this company
         //failed
-        tsummaryHash.get(oldCellValue)[1].remove(company);
+        if(tsummaryHash.has(oldCellValue)){
 
-        if(tsummaryHash.get(oldCellValue)[1].length == 0){
+          tsummaryHash.get(oldCellValue)[1].remove(company);
 
-            tsummaryHash.delete(oldCellValue);
+          if(tsummaryHash.get(oldCellValue)[1].length == 0){
+
+              tsummaryHash.delete(oldCellValue);
+
+          }
 
         }
 
@@ -317,6 +322,17 @@
     //alert(mapToJson(tsummaryHash));
     createCookie("categories", mapToJson(tsummaryHash), 100);
     
+  }
+
+  /*function onpaste(e, el){
+      setTimeout(function(){
+            el.innerText = el.innerText;
+        }, 10);
+  }*/
+
+  function handlepaste(el, e) {
+    document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
+    e.preventDefault();
   }
 
   function summaryUpdate(){
