@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="tablestyles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>ARC</title>
   </head>
   <div class="main">
@@ -66,21 +67,21 @@
         <div class="box-2 column-left">
           <div class="title">Summary</div>
           <div class="container">
-            <table id="dvdeposit">
+            <table id="dvsummary">
               <colgroup>
                 <col span="1" style="width: 40%;">
                 <col span="1" style="width: 20%;">
                 <col span="1" style="width: 20%;">
                 <col span="1" style="width: 20%;">
               </colgroup>
-              <tbody>
+              <thead>
                 <tr>
                   <th>Category</th>
                   <th>Money</th>
                   <th>Budget</th>
                   <th>Over/Under</th>
                 </tr>
-              </tbody>
+              </thead>
             </table>
           </div>
           <div class="tablesum">
@@ -106,14 +107,14 @@
                 <col span="1" style="width: 20%;">
                 <col span="1" style="width: 20%;">
               </colgroup>
-              <tbody>
+              <thead>
                 <tr>
                   <th>Category</th>
                   <th>Money</th>
                   <th>Budget</th>
                   <th>Over/Under</th>
                 </tr>
-              </tbody>
+              </thead>
             </table>
           </div>
           <div class="tablesum" id="depositsum"></div>
@@ -124,9 +125,11 @@
 </html>
 
 <script type="text/javascript">
-  function getText(){
+
+  function getText() {
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET","https://raw.githubusercontent.com/rinorocks8/ARC/master/Checking1.csv", false);
+    rawFile.open("GET","https://raw.githubusercontent.com/rinorocks8/ARC/master/Checking.csv", false);
+    rawFile.send();
     return rawFile.responseText;
   }
 
@@ -142,9 +145,9 @@
         reader.onload = function (e) {
           //define tables
           var tpurchases = document.createElement("table");
-          var apurchasessum = 0;
-
           var tdeposit = document.createElement("table");
+          
+          var apurchasessum = 0;
           var adepositsum = 0;
           //pareses csv into rows and cells
           if(skipUpload == true){
@@ -152,23 +155,22 @@
           }else{
             var rows = e.target.result.split("\n");
           }
-          for (row of rows) {
-            var cells = row.split(",");
+          for (currentRow of rows) {
+            var cells = currentRow.split(",");
             if (cells.length > 1) {
               //sort data
               if (cells[4].substring(0,8) == "PURCHASE"){
                 //creates row
                 var row = tpurchases.insertRow(-1);
-
                 var end = 50;
                 if (cells[4].includes("#"))
                 {
                 var end = cells[4].indexOf("#") - 1;
                 }
-
-                row.insertCell(-1).contentEditable = "true";
-                //cell.onchange = function(){alert("test")};
-
+                //category
+                var cell = row.insertCell(-1);
+                cell.contentEditable = "true";
+                cell.setAttribute("oninput", "summaryUpdate($(this).closest('tr').index());");
                 //money
                 row.insertCell(-1).innerHTML = -1*Number(cells[1]).toFixed(2);
                 apurchasessum += -1*Number(cells[1]);
@@ -195,6 +197,7 @@
 
                 document.getElementById("dvdeposit").append(row);
               }
+
               if (cells[4].substring(0, 15) == "ONLINE TRANSFER"){
                 var row = tdeposit.insertRow(-1);
                 //money
@@ -215,8 +218,6 @@
           document.getElementById("purchasesum").innerHTML = "Total: -" + parseFloat(apurchasessum).toFixed(2);
           document.getElementById("depositsum").innerHTML = "Total: +" + parseFloat(adepositsum).toFixed(2);
 
-          summaryUpdate();
-
         }
         if(skipUpload == true){
           reader.readAsText(new File([new Blob([""], { type: 'text/plain' })], "foo.txt", {type: "text/plain"}));
@@ -231,29 +232,94 @@
     }
   }
 
-  function summaryUpdate() {
+  function summaryUpdate(i){
+    var Purchases = document.getElementById("dvpurchases");
+    var Summary = document.getElementById("dvsummary");
+    $("#dvsummary tr:not(:first)").remove();
 
-  }
+    var tsummary = document.createElement("table");
 
-  function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-  }
-  
-  function getCookie(name) {
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for(var i=0;i < ca.length;i++) {
-          var c = ca[i];
-          while (c.charAt(0)==' ') c = c.substring(1,c.length);
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    let tsummaryHash = new Map([[]]);
+    /*
+      [category, [budget, [company1,company2]] ]
+    */
+
+    //loops through rows   
+    /*for (i = 1; i < Purchases.rows.length; i++){
+
+      //change 1 category change all of that company type
+      var category = Purchases.rows[i].cells[0].innerHTML;
+      var price = parseFloat(Purchases.rows[i].cells[1].innerHTML);
+      var company = Purchases.rows[i].cells[2].innerHTML;
+      if(!tsummaryHash.has(category) && category != "") {
+        tsummaryHash.set(category, [0,[company]]);
+        //creates temp row
+        var rowNew = tsummary.insertRow(-1);
+        //category
+        rowNew.insertCell(-1).innerHTML = category;
+        //price
+        rowNew.insertCell(-1).innerHTML = price.toFixed(2);
+        //budget
+        var cell = rowNew.insertCell(-1);
+        cell.innerHTML = "0"
+        cell.contentEditable = "true";
+        cell.setAttribute("oninput", "cookieUpdate();");
+        //adds temp row
+        Summary.append(rowNew)
+      } else if (category != ""){
+        for(row of Summary.rows){
+          if(row.cells[0].innerHTML == category){
+            var currentPrice = parseFloat(row.cells[1].innerHTML);
+            row.cells[1].innerHTML = (currentPrice + price).toFixed(2);
+          }
+        }
+        if(!tsummaryHash.get(category)[1].includes(company)){
+          tsummaryHash.get(category)[1].push(company);
+        }
       }
-      return null;
+
+    }
+    */
+
+    //removing category from compnay only changes cell changed
+    var changedIndex = i - 1;
+    var category = Purchases.rows[changedIndex].cells[0].innerHTML;
+    var price = 0;
+    var company = Purchases.rows[changedIndex].cells[2].innerHTML;
+    if(!tsummaryHash.has(category) && category != "") {
+      tsummaryHash.set(category, [0,[company]]);
+      //creates temp row
+      var rowNew = tsummary.insertRow(-1);
+      //category
+      rowNew.insertCell(-1).innerHTML = category;
+      for (i = 1; i < Purchases.rows.length; i++) {
+        if(Purchases.rows[i].cells[2].innerHTML == company){
+          Purchases.rows[i].cells[0].innerHTML = category;
+          price += parseFloat(Purchases.rows[i].cells[1].innerHTML);
+        }
+      }
+
+      //price
+      rowNew.insertCell(-1).innerHTML = price.toFixed(2);
+      //budget
+      var cell = rowNew.insertCell(-1);
+      cell.innerHTML = "0"
+      cell.contentEditable = "true";
+      cell.setAttribute("oninput", "cookieUpdate();");
+      //adds temp row
+      Summary.append(rowNew)
+    } else if (category != ""){
+      for(row of Summary.rows){
+        if(row.cells[0].innerHTML == category){
+          var currentPrice = parseFloat(row.cells[1].innerHTML);
+          row.cells[1].innerHTML = (currentPrice + price).toFixed(2);
+        }
+      }
+      if(!tsummaryHash.get(category)[1].includes(company)){
+        tsummaryHash.get(category)[1].push(company);
+      }
+    }
+    
   }
 
   window.onload = Upload();
