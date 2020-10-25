@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+tr {
+  font-size: 14px;
+}
+
+td{
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.container {
+  overflow-y: scroll;
+  max-height: calc(100% - 60px);
+}
+
+.tablesum{
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+    background-color: #F8F8F8;
+}

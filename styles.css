@@ -16,7 +16,6 @@
 
 .w3-modal {
   z-index:3;
-  display:none;
   padding-top:100px;
   position:fixed;
   left:0;
@@ -202,54 +201,4 @@ a:hover, a:active {
 
 .container {
   height: calc(100% - 60px);
-}
-
-.table {
-  overflow-y: scroll;
-  max-height: 100%;
-}
-
-.tablesum{
-    overflow: hidden;
-    height: 20px;
-    line-height: 20px;
-    background-color: #F8F8F8;
-}
-
-.table-editable {
-  position: relative;
-
-  .glyphicon {
-    font-size: 20px;
-  }
-}
-
-.table-remove {
-  color: #700;
-  cursor: pointer;
-
-  &:hover {
-    color: #f00;
-  }
-}
-
-.table-up, .table-down {
-  color: #007;
-  cursor: pointer;
-
-  &:hover {
-    color: #00f;
-  }
-}
-
-.table-add {
-  color: #070;
-  cursor: pointer;
-  position: absolute;
-  top: 8px;
-  right: 0;
-
-  &:hover {
-    color: #0b0;
-  }
 }
