@@ -319,16 +319,10 @@
     }
     
     //hashmap save
-    //alert(mapToJson(tsummaryHash));
+    alert(mapToJson(tsummaryHash));
     createCookie("categories", mapToJson(tsummaryHash), 100);
     
   }
-
-  /*function onpaste(e, el){
-      setTimeout(function(){
-            el.innerText = el.innerText;
-        }, 10);
-  }*/
 
   function handlepaste(el, e) {
     document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
