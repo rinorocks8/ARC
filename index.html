@@ -458,17 +458,19 @@
 
 
   function createCookie(name,value,days) {
-    //localStorage.setItem(name, value);
-    if (days) {
+    localStorage.setItem(name, value);
+    /*if (days) {
         var date = new Date();
         date.setTime(date.getTime()+(days*24*60*60*1000));
         var expires = "; expires="+date.toGMTString();
     }
     else var expires = "";
     document.cookie = name+"="+value+expires+"; path=/";
+    */
   }
 
   function readCookie(name) {
+    /*
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
@@ -477,7 +479,8 @@
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-    //return localStorage.getItem(name);
+    */
+    return localStorage.getItem(name);
   }
 
   window.onload = cookieToMap();
