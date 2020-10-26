@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="tablestyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/google-palette/1.1.0/palette.js"></script>
     <title>ARC</title>
   </head>
   <div class="main">
@@ -37,8 +39,9 @@
         <div class="box-1 column-left">
           <div class="title">Income and Savings</div>
         </div>
-        <div class="box-1 column-center">
+        <div class="box-1 column-center" onresize="myChart.resize();">
           <div class="title">Net Budget</div>
+          <canvas id="myChart" class="chart-center" width=100%></canvas>
         </div>
         <div class="box-1 column-right">
           <div class="title">Purchases</div>
@@ -50,14 +53,14 @@
                 <col span="1" style="width: 25%;">
                 <col span="1" style="width: 25%;">
               </colgroup>
-              <tbody>
+              <thead>
                 <tr>
                   <th>Category</th>
                   <th>Money</th>
                   <th>Company</th>
                   <th>Date</th>
                 </tr>
-              </tbody>
+              </thead>
             </table>
           </div>
           <div class="tablesum" id="purchasesum"></div>
@@ -85,13 +88,19 @@
             </table>
           </div>
           <div class="tablesum">
-            <table id="dvsummarysum">
+            <table>
+              <colgroup>
+                <col span="1" style="width: 40%;">
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 20%;">
+              </colgroup>
               <tbody>
                 <tr>
                   <td>Total</th>
-                    <td>100</th>
-                    <td>50</th>
-                    <td>+50</th>
+                  <td id="summarymoney"></th>
+                  <td id="summarybudget"></th>
+                  <td id="summarynet"></th>
                 </tr>
               </tbody>
             </table>
@@ -101,18 +110,12 @@
           <div class="title">Deposits</div>
           <div class="container">
             <table id="dvdeposit">
-              <colgroup>
-                <col span="1" style="width: 40%;">
-                <col span="1" style="width: 20%;">
-                <col span="1" style="width: 20%;">
-                <col span="1" style="width: 20%;">
-              </colgroup>
               <thead>
                 <tr>
-                  <th>Category</th>
                   <th>Money</th>
-                  <th>Budget</th>
-                  <th>Over/Under</th>
+                  <th>Type</th>
+                  <th>Sender/Check #</th>
+                  <th>Date</th>
                 </tr>
               </thead>
             </table>
@@ -125,6 +128,22 @@
 </html>
 
 <script type="text/javascript">
+  
+  var myChart = new Chart(document.getElementById('myChart').getContext('2d'), {
+    type: 'pie',
+    data: {
+      "labels": [],
+      "datasets": [{
+        "data":[], 
+        "backgroundColor":[]
+      }]
+    },
+    options: {
+        "legend": {
+            "position": "right"
+        }
+    }
+  });
 
   //global hashmap
   let tsummaryHash = new Map(); //[category, [budget, [company1,company2]] ]
@@ -179,6 +198,7 @@
                 cell.setAttribute("onclick", "oldCellValue = this.innerText;");
                 cell.setAttribute("onkeydown", "javascript:if(event.keyCode == 13) blur();")
                 cell.setAttribute("onpaste", "handlepaste(this, event)");
+                cell.setAttribute("oncut", "hashUpdate($(this).closest('tr').index()); oldCellValue = this.innerText;");
                 //loads category from HashMap
                 for (category of tsummaryHash){
                   if(category[1][1].includes(cells[4].substring(29, end))){
@@ -186,7 +206,7 @@
                   }
                 }
                 //money
-                row.insertCell(-1).innerHTML = -1*Number(cells[1]).toFixed(2);
+                row.insertCell(-1).innerHTML = parseFloat(-1*Number(cells[1])).toFixed(2);
                 apurchasessum += -1*Number(cells[1]);
                 //company
                 row.insertCell(-1).innerHTML = cells[4].substring(29, end);
@@ -319,7 +339,7 @@
     }
     
     //hashmap save
-    alert(mapToJson(tsummaryHash));
+    //alert(mapToJson(tsummaryHash));
     createCookie("categories", mapToJson(tsummaryHash), 100);
     
   }
@@ -354,21 +374,65 @@
       rowNew.insertCell(-1).innerHTML = price.toFixed(2);
       //budget
       var cell = rowNew.insertCell(-1);
-      cell.innerHTML = parseFloat(key[1][0]);
+      cell.innerHTML = parseFloat(key[1][0]).toFixed(2);
       cell.contentEditable = "true";
       cell.setAttribute("oninput", "budgetUpdate();");
       //over/under
-      rowNew.insertCell(-1).innerHTML = (parseFloat(key[1][0]) - price).toFixed(2);
+      var rownet = (parseFloat(key[1][0]) - price).toFixed(2)
+      var cell = rowNew.insertCell(-1);
+      if(rownet > 0){
+        cell.innerHTML = "+" + rownet;
+        cell.style.color = "#78ebdb";
+      } else {
+        cell.innerHTML = rownet;
+        cell.style.color = "#fc6db3";
+      }
       
       //adds temp row
       Summary.append(rowNew)
+
     }
     
+    var summarymoney = 0;
+    var summarybudget = 0;
+    var summarynet = 0;
+    myChart.data.labels.pop();
+    myChart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    var seq = palette('tol-rainbow', Summary.rows.length)
+    for (var i = 1; i < Summary.rows.length; i++){
+      summarymoney += parseFloat(Summary.rows[i].cells[1].innerHTML);
+      summarybudget += parseFloat(Summary.rows[i].cells[2].innerHTML);
+      summarynet += parseFloat(Summary.rows[i].cells[3].innerHTML);
+
+      //Chart Category Label
+      myChart.data.labels[i-1] = Summary.rows[i].cells[0].innerHTML;
+      //Chart Category Money
+      myChart.data.datasets[0].data[i-1] = Summary.rows[i].cells[1].innerHTML;
+      //Chart Category Color
+      myChart.data.datasets[0].backgroundColor[i-1] = "#"+seq[i];
+    }
+
+    myChart.update();
+    document.getElementById("summarymoney").innerHTML = summarymoney.toFixed(2);
+    document.getElementById("summarybudget").innerHTML = summarybudget.toFixed(2);
+    if(summarynet > 0){
+      document.getElementById("summarynet").innerHTML = "+"+summarynet.toFixed(2);
+      document.getElementById("summarynet").style.color = "#78ebdb";
+    } else {
+      document.getElementById("summarynet").innerHTML = summarynet.toFixed(2);
+      document.getElementById("summarynet").style.color = "#fc6db3";
+    }
+
   }
 
   function budgetUpdate(){
 
     var Summary = document.getElementById("dvsummary");
+    var summarysum = 0;
+    var summarybudget = 0;
+    var summarynet = 0;
 
     for (var i = 1; i < Summary.rows.length; i++){
 
@@ -377,22 +441,44 @@
 
       if (decimalPoints && decimalPoints.length > 1) {
         newBudget = newBudget.replace('.', '');
-        Summary.rows[i].cells[2].innerHTML = newBudget;
+        Summary.rows[i].cells[2].innerHTML = parseFloat(newBudget).toFixed(2);
       }
       if(Summary.rows[i].cells[2].innerHTML != newBudget){
-        Summary.rows[i].cells[2].innerHTML = newBudget;
+        Summary.rows[i].cells[2].innerHTML = parseFloat(newBudget).toFixed(2);
       }
 
       currentCategory = tsummaryHash.get(Summary.rows[i].cells[0].innerHTML);
       if (Summary.rows[i].cells[2].innerHTML == NaN || Summary.rows[i].cells[2].innerHTML == ""){
         currentCategory[0] = "0.00";
       } else {
-        currentCategory[0] = newBudget;
+        currentCategory[0] = parseFloat(newBudget).toFixed(2);
       }
       
       tsummaryHash.set(Summary.rows[i].cells[0].innerHTML, currentCategory);
 
-      Summary.rows[i].cells[3].innerHTML = (parseFloat(Summary.rows[i].cells[2].innerHTML) - parseFloat(Summary.rows[i].cells[1].innerHTML)).toFixed(2);
+      var rownet = (parseFloat(Summary.rows[i].cells[2].innerHTML) - parseFloat(Summary.rows[i].cells[1].innerHTML)).toFixed(2);
+      if(rownet > 0){
+        Summary.rows[i].cells[3].innerHTML = "+" + rownet;
+        Summary.rows[i].cells[3].style.color = "#78ebdb";
+      } else {
+        Summary.rows[i].cells[3].innerHTML = rownet;
+        Summary.rows[i].cells[3].style.color = "#fc6db3";
+      }
+
+      summarysum += parseFloat(Summary.rows[i].cells[1].innerHTML);
+      summarybudget += parseFloat(Summary.rows[i].cells[2].innerHTML);
+      summarynet += parseFloat(Summary.rows[i].cells[3].innerHTML);
+
+    }
+
+    document.getElementById("summarymoney").innerHTML = summarysum.toFixed(2);
+    document.getElementById("summarybudget").innerHTML = summarybudget.toFixed(2);
+    if(summarynet > 0){
+      document.getElementById("summarynet").innerHTML = "+"+summarynet.toFixed(2);
+      document.getElementById("summarynet").style.color = "#78ebdb";
+    } else {
+      document.getElementById("summarynet").innerHTML = summarynet.toFixed(2);
+      document.getElementById("summarynet").style.color = "#fc6db3";
     }
 
     createCookie("categories", mapToJson(tsummaryHash), 100);
@@ -441,8 +527,9 @@
   }
 
   function cookieToMap() {
-    if (readCookie("categories") != ""){
-      var importJson = JSON.parse(readCookie("categories"));
+    var cookie = readCookie("categories")
+    if (cookie != "" && cookie != "{\"map\":[]}"){
+      var importJson = JSON.parse(cookie);
       if(importJson != null){
         var key1 = importJson.map[0].companies[0]; //returns company1 of map[0]
         for(var i = 0; i < importJson.map.length; i++) {

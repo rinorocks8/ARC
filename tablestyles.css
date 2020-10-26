@@ -1,18 +1,42 @@
 table {
   width: 100%;
+  border-collapse: collapse;
+  background-color: white;
 }
 
 th {
   text-align: left;
+  font-family: "Arial", Gadget, sans-serif;
+  font-weight: normal;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 2px;
+}
+
+thead tr{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+  border-width: 2px 0;
+  border-color: white;
+  border-top: 0;
 }
 
 tr {
-  font-size: 14px;
+  font-size: 12px;
+  border: solid;
+  border-width: 1px 0;
+  border-color: whitesmoke;
 }
 
 td{
   overflow-x: hidden;
   white-space: nowrap;
+  font-family: "Arial", Gadget, sans-serif;
+  font-size: 12px;
+  padding: 2px;
 }
 
 .container {
@@ -25,4 +49,7 @@ td{
     height: 20px;
     line-height: 20px;
     background-color: #F8F8F8;
+    font-family: "Arial", Gadget, sans-serif;
+    font-size: 12px;
+    padding: 2px;
 }
