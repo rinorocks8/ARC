@@ -39,7 +39,7 @@
         <div class="box-1 column-left">
           <div class="title">Income and Savings</div>
         </div>
-        <div class="box-1 column-center" onresize="myChart.resize();">
+        <div class="box-1 column-center" style="background-color: #F5F5F5;" onresize="myChart.resize();">
           <div class="title">Net Budget</div>
           <canvas id="myChart" class="chart-center" width=100%></canvas>
         </div>
@@ -150,6 +150,20 @@
   //global
   let oldCellValue = "";
 
+  const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+  const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+      v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+      )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+  // do the work...
+  document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+      const table = th.closest('table');
+      Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+          .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+          .forEach(tr => table.appendChild(tr) );
+  })));
+
   function getText() {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET","https://raw.githubusercontent.com/rinorocks8/ARC/master/Checking.csv", false);
@@ -209,7 +223,7 @@
                 row.insertCell(-1).innerHTML = parseFloat(-1*Number(cells[1])).toFixed(2);
                 apurchasessum += -1*Number(cells[1]);
                 //company
-                row.insertCell(-1).innerHTML = cells[4].substring(29, end);
+                row.insertCell(-1).innerHTML = cells[4].substring(29, end).replace('amp;', '');
                 //date
                 row.insertCell(-1).innerHTML = cells[0];
 
@@ -272,8 +286,8 @@
 
     //removing category from compnay only changes cell changed
     var changedIndex = i - 1;
-    var category = Purchases.rows[changedIndex].cells[0].innerHTML;
-    var company = Purchases.rows[changedIndex].cells[2].innerHTML;
+    var category = Purchases.rows[changedIndex].cells[0].innerHTML.replace('amp;', '');
+    var company = Purchases.rows[changedIndex].cells[2].innerHTML.replace('amp;', '');
 
     //HashMap update 
     //if this category is not blank
@@ -339,7 +353,7 @@
     }
     
     //hashmap save
-    //alert(mapToJson(tsummaryHash));
+    alert(mapToJson(tsummaryHash));
     createCookie("categories", mapToJson(tsummaryHash), 100);
     
   }
@@ -407,7 +421,7 @@
       summarynet += parseFloat(Summary.rows[i].cells[3].innerHTML);
 
       //Chart Category Label
-      myChart.data.labels[i-1] = Summary.rows[i].cells[0].innerHTML;
+      myChart.data.labels[i-1] = Summary.rows[i].cells[0].innerHTML.replace('amp;', '');
       //Chart Category Money
       myChart.data.datasets[0].data[i-1] = Summary.rows[i].cells[1].innerHTML;
       //Chart Category Color
