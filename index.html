@@ -17,14 +17,32 @@
         </header>
         <div class="w3-container">
           <p>Input Types: .CSC, .TXT</p>
-          <p><input type="file" id="fileUpload" onchange="Upload(); document.getElementById('id01').style.display='none';"></p>
+        <p><input type="file" id="fileUpload" onchange="Upload(); document.getElementById('id01').style.display='none'; if (localStorage.getItem('instructions') == null) {document.getElementById('id02').style.display='block';}"></p>
         </div>
         <footer class="w3-container modal-color">
-          <p style="text-align: right;"><button onclick="useExample = true; Upload(); document.getElementById('id01').style.display='none';" >Use Example File</button></p>
+          <p style="text-align: right;"><button onclick="useExample = true; Upload(); document.getElementById('id01').style.display='none'; if (localStorage.getItem('instructions') == null) {document.getElementById('id02').style.display='block';}" >Use Example File</button></p>
         </footer>
       </div>
     </div>
     <!-- End of modal file requester-->
+    <div id="id02" class="w3-modal" style="display: none;">
+      <div class="w3-modal-content w3-animate-top w3-card-4">
+        <header class="w3-container modal-color">
+          <h2>How to Use</h2>
+        </header>
+        <div class="w3-container">
+          <p>In the Purchases Box in the top right, you can add categories to each company to seperate out the purchases. In the Summary Box in the bottom, you can adjust the budget to allocate money torwards that category and see if you go under, meet, or exceed your budget.</p>
+        </div>
+        <footer class="w3-container modal-color">
+          <p>
+            <div>
+              <button onclick="document.getElementById('id02').style.display='none';" >Close</button>
+              <button onclick="document.getElementById('id02').style.display='none'; localStorage.setItem('instructions', false);" style="float:right;">Do Not Show Again</button>
+            </div>
+          </p>
+        </footer>
+      </div>
+    </div>
     <div class="menu">
       <a href="about.html">
         <canvas id="logo" width="160" height="60">
@@ -32,12 +50,14 @@
       </a>
       <br>
       <a href="invest.html" class="menufont">Investments</a>
-      <a href="index.html" class="menufont">Banking</a></li> 
+      <a href="index.html" class="menufont">Banking</a>
+      <button style="bottom:20px; left: 40px; position: absolute;" class="menufont" onclick="document.getElementById('id02').style.display='block'; localStorage.removeItem('instructions');">Show Instructions Again</button>
     </div>
     <div class="body">
       <div class="vertical-split">
         <div class="box-1 column-left">
           <div class="title">Income and Savings</div>
+          <p style="margin:20px;">Income and Savings Not Completed</p>
         </div>
         <div class="box-1 column-center" style="background-color: #F5F5F5;" onresize="myChart.resize();">
           <div class="title">Net Budget</div>
