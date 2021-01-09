@@ -9,6 +9,22 @@
     <title>ARC</title>
   </head>
   <div class="main">
+    <!-- This is for the modal file requester-->
+    <div id="id01" class="w3-modal">
+      <div class="w3-modal-content w3-animate-top w3-card-4">
+        <header class="w3-container modal-color">
+          <h2>Upload Transaction History</h2>
+        </header>
+        <div class="w3-container">
+          <p>Input Types: .CSC, .TXT</p>
+          <p><input type="file" id="fileUpload" onchange="Upload(); document.getElementById('id01').style.display='none';"></p>
+        </div>
+        <footer class="w3-container modal-color">
+          <p style="text-align: right;"><button onclick="useExample = true; Upload(); document.getElementById('id01').style.display='none';" >Use Example File</button></p>
+        </footer>
+      </div>
+    </div>
+    <!-- End of modal file requester-->
     <div class="menu">
       <a href="about.html">
         <canvas id="logo" width="160" height="60">
@@ -19,22 +35,6 @@
       <a href="index.html" class="menufont">Banking</a></li> 
     </div>
     <div class="body">
-      <!-- This is for the modal file requester-->
-      <div id="id01" class="w3-modal" style="display: none !important;">
-        <div class="w3-modal-content w3-animate-top w3-card-4">
-          <header class="w3-container modal-color">
-            <h2>Upload File</h2>
-          </header>
-          <div class="w3-container">
-            <p>Input Types: .CSC, .TXT</p>
-            <p><input type="file" id="fileUpload" onchange="Upload(); document.getElementById('id01').style.display='none';"></p>
-          </div>
-          <footer class="w3-container modal-color">
-            <p></p>
-          </footer>
-        </div>
-      </div>
-      <!-- End of modal file requester-->
       <div class="vertical-split">
         <div class="box-1 column-left">
           <div class="title">Income and Savings</div>
@@ -150,6 +150,8 @@
   //global
   let oldCellValue = "";
 
+  var useExample = false;
+
   function getText() {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET","https://raw.githubusercontent.com/rinorocks8/ARC/master/Checking.csv", false);
@@ -158,15 +160,15 @@
   }
 
   function Upload() {
-    var skipUpload = true;
 
     var fileUpload = document.getElementById("fileUpload");
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
-    if (skipUpload == true || regex.test(fileUpload.value.toLowerCase())) {
-      if (skipUpload == true || typeof (FileReader) != "undefined") {
+    if (useExample == true || regex.test(fileUpload.value.toLowerCase())) {
+      if (useExample == true || typeof (FileReader) != "undefined") {
         var reader = new FileReader();
 
         reader.onload = function (e) {
+
           //define tables
           var tpurchases = document.createElement("table");
           var tdeposit = document.createElement("table");
@@ -174,11 +176,12 @@
           var apurchasessum = 0;
           var adepositsum = 0;
           //pareses csv into rows and cells
-          if(skipUpload == true){
+          if(useExample == true){
             var rows = getText().split("\n");
-          }else{
+          } else {
             var rows = e.target.result.split("\n");
           }
+
           for (currentRow of rows) {
             var cells = currentRow.split(",");
             if (cells.length > 1) {
@@ -254,7 +257,7 @@
           summaryUpdate();
 
         }
-        if(skipUpload == true){
+        if(useExample == true){
           reader.readAsText(new File([new Blob([""], { type: 'text/plain' })], "foo.txt", {type: "text/plain"}));
         }else{
           reader.readAsText(fileUpload.files[0]);
@@ -539,7 +542,6 @@
     }
 
     //alert(mapToJson(tsummaryHash));
-    Upload();
   }
 
   Array.prototype.remove = function() {
@@ -556,7 +558,9 @@
 
   function createCookie(name,value,days) {
     localStorage.setItem(name, value);
-    /*if (days) {
+    
+    /*
+    if (days) {
         var date = new Date();
         date.setTime(date.getTime()+(days*24*60*60*1000));
         var expires = "; expires="+date.toGMTString();
@@ -567,19 +571,29 @@
   }
 
   function readCookie(name) {
-    /*
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+
+    if (useExample == false) {
+
+      return localStorage.getItem(name);
+
+      /*
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+      */
+    } else {
+
+      return '{"map":[{"key": "Food","budget": "500.00","companies": ["DUNKIN","CHICK-FIL-A","THE FRESH MARKE PONTE","SECRET GARDEN JACKSON","PUBLIX SUPER MAR 3777","TROPICAL SMOOTHIE PON","RITA","VINNYS RESTAURANT JAC","PUBLIX SUPER MAR 670 ","WHITS FROZEN CUSTA JA","PUBLIX SUPER MAR 220 ","SQ *CHRISTYS DREA PO","THEMINIBAR_1 JACKSONV","BEACH DINER II PONTE ","MCDONALDS F12869 PON","MCDONALDS F33317 JAC","KILWINS ST AUGUSTI ST","MCDONALDS F30461 JAC","MOES SW GRILL 144 JA","SQ *CHRISTYS DREA Po","PUBLIX SUPER MAR 120 ","BENTO CAFE JACKSONVIL","YOBE FROZEN YOGURT JA","NONA BLUE PVB PONTE V","RITA\'","SQ *CHRISTY\'S DREA PO","MCDONALD\'S F12869 PON","MCDONALD\'S F33317 JAC","MCDONALD\'S F30461 JAC","MOE\'S SW GRILL 144 JA","SQ *CHRISTY\'S DREA Po","WINN-DIXIE"]},{"key": "Games","budget": "100.00","companies": ["PAYPAL *ROYAL APPS 40","PAYPAL *MINESUPERI 40","PAYPAL *HASHBANGPR 40","PAYPAL *FANDANGOME 40","PAYPAL *PLAYSTATIO 40"]},{"key": "Clothes","budget": "100.00","companies": ["NORDSTROM DIRECT","SUNRISE SURF SHOP JCK"]},{"key": "Entertainment","budget": "200.00","companies": ["Prime Video*MN9EG1 88"," 05/19 Prime Video 88","CINEMARK THEATRES JAC","REGAL CINEMAS BEAC JA","BEACH BOWL JACKSONVIL","JACKSONVILLE ICE JACK","ADVENTURE LANDING JAC","SQ *YOUNG LIFE SHA Ba","GEORGIA FLORIDA LAKE ","JACKSONVILLE ZOO & GA"]},{"key": "Misc","budget": "200.00","companies": ["IKEA JACKSONVILLE JAC","AMAZON.COM*MZ1J618 AM","WALGREENS STORE 860 A","PAYPAL *LOVEPOP LL 40","Amazon.com Amzn.com/b","AMZN Mktp US Amzn.com","AMAZON MKTPLACE PM WW","AMAZON.COM AMZN.CO AM"]},{"key": "Gas","budget": "50.00","companies": ["GATE EXPRESS CARWA PO","GATE 1229 PONTE VEDRA"]}]}';
+    
     }
-    return null;
-    */
-    //return localStorage.getItem(name);
-    return '{"map":[{"key": "Food","budget": "500.00","companies": ["DUNKIN","CHICK-FIL-A","THE FRESH MARKE PONTE","SECRET GARDEN JACKSON","PUBLIX SUPER MAR 3777","TROPICAL SMOOTHIE PON","RITA","VINNYS RESTAURANT JAC","PUBLIX SUPER MAR 670 ","WHITS FROZEN CUSTA JA","PUBLIX SUPER MAR 220 ","SQ *CHRISTYS DREA PO","THEMINIBAR_1 JACKSONV","BEACH DINER II PONTE ","MCDONALDS F12869 PON","MCDONALDS F33317 JAC","KILWINS ST AUGUSTI ST","MCDONALDS F30461 JAC","MOES SW GRILL 144 JA","SQ *CHRISTYS DREA Po","PUBLIX SUPER MAR 120 ","BENTO CAFE JACKSONVIL","YOBE FROZEN YOGURT JA","NONA BLUE PVB PONTE V","RITA\'","SQ *CHRISTY\'S DREA PO","MCDONALD\'S F12869 PON","MCDONALD\'S F33317 JAC","MCDONALD\'S F30461 JAC","MOE\'S SW GRILL 144 JA","SQ *CHRISTY\'S DREA Po","WINN-DIXIE"]},{"key": "Games","budget": "100.00","companies": ["PAYPAL *ROYAL APPS 40","PAYPAL *MINESUPERI 40","PAYPAL *HASHBANGPR 40","PAYPAL *FANDANGOME 40","PAYPAL *PLAYSTATIO 40"]},{"key": "Clothes","budget": "100.00","companies": ["NORDSTROM DIRECT","SUNRISE SURF SHOP JCK"]},{"key": "Entertainment","budget": "200.00","companies": ["Prime Video*MN9EG1 88"," 05/19 Prime Video 88","CINEMARK THEATRES JAC","REGAL CINEMAS BEAC JA","BEACH BOWL JACKSONVIL","JACKSONVILLE ICE JACK","ADVENTURE LANDING JAC","SQ *YOUNG LIFE SHA Ba","GEORGIA FLORIDA LAKE ","JACKSONVILLE ZOO & GA"]},{"key": "Misc","budget": "200.00","companies": ["IKEA JACKSONVILLE JAC","AMAZON.COM*MZ1J618 AM","WALGREENS STORE 860 A","PAYPAL *LOVEPOP LL 40","Amazon.com Amzn.com/b","AMZN Mktp US Amzn.com","AMAZON MKTPLACE PM WW","AMAZON.COM AMZN.CO AM"]},{"key": "Gas","budget": "50.00","companies": ["GATE EXPRESS CARWA PO","GATE 1229 PONTE VEDRA"]}]}';
+
   }
+
 
   //sort columns
   const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
